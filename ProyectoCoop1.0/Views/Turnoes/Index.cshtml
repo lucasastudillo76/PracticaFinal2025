@@ -1,0 +1,41 @@
+﻿@model IEnumerable<ProyectoCoop1._0.Models.Turno>
+
+@{
+    ViewData["Title"] = "Listado de Turnos";
+}
+
+<h2>Turnos Reservados</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Fecha y Hora</th>
+            <th>Servicio</th>
+            <th>Tarea</th>
+            <th>Estado</th>
+            <th>Socio</th>
+            <th>Email</th>
+            <th>Teléfono</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.FechaHora.ToString("g")</td>
+                <td>@item.servicio</td>
+                <td>@item.tarea</td>
+                <td>@item.estado</td>
+                <td>@item.Socio?.nombre @item.Socio?.apellido</td>
+                <td>@item.Socio?.email</td>
+                <td>@item.Socio?.telefono</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.id" class="btn btn-sm btn-info">Ver</a>
+                    <a asp-action="Edit" asp-route-id="@item.id" class="btn btn-sm btn-warning">Editar</a>
+                    <a asp-action="Delete" asp-route-id="@item.id" class="btn btn-sm btn-danger">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

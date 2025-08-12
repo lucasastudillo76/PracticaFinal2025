@@ -1,0 +1,53 @@
+﻿@model IEnumerable<ProyectoCoop1._0.Models.Turno>
+
+@{
+    ViewData["Title"] = "Turnos Finalizados";
+}
+
+<h1>Turnos Finalizados</h1>
+
+<form method="get" asp-action="Finalizados" class="form-inline mb-3">
+    <div class="form-group">
+        <label for="filtroApellido" class="mr-2">Buscar por Apellido:</label>
+        <input type="text" name="filtroApellido" id="filtroApellido" class="form-control mr-2"
+               value="@ViewBag.FiltroApellido" placeholder="Ej: Pérez" />
+        <button type="submit" class="btn btn-primary">Buscar</button>
+    </div>
+</form>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Fecha y Hora</th>
+            <th>Servicio</th>
+            <th>Tarea</th>
+            <th>Socio</th>
+            <th>Estado</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Any())
+        {
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.FechaHora.ToString("g")</td>
+                    <td>@item.servicio</td>
+                    <td>@item.tarea</td>
+                    <td>@item.Socio?.nombre @item.Socio?.apellido</td>
+                    <td>@item.estado</td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="5" class="text-center text-muted">No hay turnos finalizados con ese apellido.</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div>
+    <a asp-action="Index" class="btn btn-secondary">Volver</a>
+</div>

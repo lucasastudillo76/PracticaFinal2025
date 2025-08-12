@@ -1,0 +1,125 @@
+﻿@model ProyectoCoop1._0.Models.Turno
+
+@{
+    ViewData["Title"] = "Sacar Turno";
+}
+
+<h2>Sacar Turno</h2>
+<hr />
+
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="CreateTurnoSocio" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <!-- Fecha y Hora -->
+            <div class="form-group">
+                <label asp-for="FechaHora" class="control-label"></label>
+                <input asp-for="FechaHora" class="form-control" type="datetime-local" min="@DateTime.Now.ToString("yyyy-MM-ddTHH:mm")" />
+                <span asp-validation-for="FechaHora" class="text-danger"></span>
+            </div>
+
+            <!-- Servicio -->
+            <div class="form-group">
+                <label asp-for="servicio" class="control-label"></label>
+                <select asp-for="servicio" class="form-control" id="servicio">
+                    <option value="">-- Seleccione un servicio --</option>
+                    <option value="internet">Internet</option>
+                    <option value="cablevision">Cablevisión</option>
+                    <option value="telefono">Teléfono</option>
+                </select>
+                <span asp-validation-for="servicio" class="text-danger"></span>
+            </div>
+
+            <!-- Tarea -->
+            <div class="form-group">
+                <label asp-for="tarea" class="control-label"></label>
+                <select asp-for="tarea" class="form-control" id="tarea">
+                    <option value="">-- Seleccione una tarea --</option>
+                </select>
+                <span asp-validation-for="tarea" class="text-danger"></span>
+            </div>
+
+            <!-- Estado (visible, solo pendiente para socio) -->
+            <div class="form-group">
+                <label asp-for="estado" class="control-label"></label>
+                <select asp-for="estado" class="form-control">                    
+                    <option value="Pendiente" selected>Pendiente</option>
+                </select>
+                <span asp-validation-for="estado" class="text-danger"></span>
+            </div>
+
+            <!-- Botón Enviar -->
+            <div class="form-group mt-3">
+                <input type="submit" value="Confirmar Turno" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <script>
+        const tareasPorServicio = {
+            internet: [
+                "Colocación de fibra",
+                "Sin internet",
+                "Interrupciones de servicio"
+            ],
+            telefono: [
+                "Sin tono",
+                "Con ruido"
+            ],
+            cablevision: [
+                "Conectar servicio de TV",
+                "No se puede reproducir contenido",
+                "Conectar 1 STB adicional",
+                "Conectar 2 STB adicional"
+            ]
+        };
+
+        document.getElementById("servicio").addEventListener("change", function () {
+            const servicioSeleccionado = this.value;
+            const tareaSelect = document.getElementById("tarea");
+
+            tareaSelect.innerHTML = '<option value="">-- Seleccione una tarea --</option>';
+
+            if (tareasPorServicio[servicioSeleccionado]) {
+                tareasPorServicio[servicioSeleccionado].forEach(function (tarea) {
+                    const option = document.createElement("option");
+                    option.value = tarea;
+                    option.text = tarea;
+                    tareaSelect.appendChild(option);
+                });
+            }
+        });          
+        const fechaHoraInput = document.getElementById("fechaHora");
+
+        fechaHoraInput.addEventListener("change", function () {
+            const fechaSeleccionada = new Date(this.value);
+            const diaSemana = fechaSeleccionada.getDay(); // 0 (domingo) a 6 (sábado)
+            const hora = fechaSeleccionada.getHours();
+
+            // Validar días hábiles
+            if (diaSemana === 0 || diaSemana === 6) {
+                alert("Por favor seleccione un día hábil (lunes a viernes).");
+                this.value = "";
+                return;
+            }
+
+            // Validar hora entre 07:00 y 11:00 (turno de 1h, termina 12:00)
+            if (hora < 7 || hora > 11) {
+                alert("Por favor seleccione una hora entre las 07:00 y las 11:00.");
+                this.value = "";
+                return;
+            }
+        });
+        
+    </script>
+    }
+    
+

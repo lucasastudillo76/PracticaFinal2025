@@ -1,0 +1,84 @@
+﻿@model ProyectoCoop1._0.Models.Turno
+
+@{
+    ViewData["Title"] = "Editar Estado del Turno";
+    bool esFinalizado = Model.estado == "Finalizado";
+}
+
+<h1>Editar Estado del Turno</h1>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="id" />
+
+            <!-- Fecha y hora solo lectura -->
+            <div class="form-group">
+                <label asp-for="FechaHora" class="control-label"></label>
+                <input asp-for="FechaHora" class="form-control" readonly />
+            </div>
+
+            <!-- Servicio solo lectura -->
+            <div class="form-group">
+                <label asp-for="servicio" class="control-label"></label>
+                <input asp-for="servicio" class="form-control" readonly />
+            </div>
+
+            <!-- Tarea solo lectura -->
+            <div class="form-group">
+                <label asp-for="tarea" class="control-label"></label>
+                <input asp-for="tarea" class="form-control" readonly />
+            </div>
+
+            <!-- Socio (nombre completo) solo lectura -->
+            <div class="form-group">
+                <label>Socio</label>
+                <input class="form-control" value="@ViewBag.NombreCompletoSocio" readonly />
+            </div>
+
+            <!-- Estado editable solo si no está finalizado -->
+            <div class="form-group">
+                <label asp-for="estado" class="control-label"></label>
+
+                @if (esFinalizado)
+                {
+                    <input asp-for="estado" class="form-control" readonly />
+                }
+                else
+                {
+                    <select asp-for="estado" class="form-control">
+                        <option value="Pendiente" selected="@("Pendiente" == Model.estado)">Pendiente</option>
+                        <option value="Finalizado">Finalizado</option>
+                    </select>
+                }
+
+                <span asp-validation-for="estado" class="text-danger"></span>
+            </div>
+
+            <!-- Botón solo si se puede editar -->
+            @if (!esFinalizado)
+            {
+                <div class="form-group">
+                    <input type="submit" value="Guardar Cambios" class="btn btn-primary" />
+                </div>
+            }
+            else
+            {
+                <div class="alert alert-info">
+                    Este turno ya fue finalizado. No se puede modificar.
+                </div>
+            }
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Volver a la lista</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
