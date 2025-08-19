@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "SfdojIKTqOw=",
+  "dgSpecHash": "kNo7lMrH/Yk=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Lucas Astudillo\\Desktop\\Practicas\\ProyectoCoop1.0\\ProyectoCoop1.0\\ProyectoCoop1.0.csproj",
+  "projectFilePath": "C:\\Users\\Lucas Astudillo\\Desktop\\Practicas Git\\PracticaFinal2025\\ProyectoCoop1.0\\ProyectoCoop1.0.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Lucas Astudillo\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\Lucas Astudillo\\.nuget\\packages\\azure.identity\\1.11.4\\azure.identity.1.11.4.nupkg.sha512",

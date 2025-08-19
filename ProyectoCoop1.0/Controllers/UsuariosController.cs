@@ -40,14 +40,21 @@ namespace ProyectoCoop1._0.Controllers
             if (usuario.ToLower().Trim() == "admin" && contraseña == "1234")
             {
                 var claimsAdmin = new List<Claim>
-            {
-                new Claim(ClaimTypes.Name, "admin"),
-                new Claim(ClaimTypes.Role, "Admin"),
-                new Claim("EsAdmin", "true")
-            };
+        {
+            new Claim(ClaimTypes.Name, "admin"),
+            new Claim(ClaimTypes.Role, "Admin"),
+            new Claim("EsAdmin", "true")
+        };
+
                 var identityAdmin = new ClaimsIdentity(claimsAdmin, "MyCookieAuth");
                 var principalAdmin = new ClaimsPrincipal(identityAdmin);
-                await HttpContext.SignInAsync("MyCookieAuth", principalAdmin);
+
+                var authProperties = new AuthenticationProperties
+                {
+                    IsPersistent = false // La cookie no se mantiene al cerrar el navegador
+                };
+
+                await HttpContext.SignInAsync("MyCookieAuth", principalAdmin, authProperties);
                 return RedirectToAction("Index", "Socios");
             }
 
@@ -113,15 +120,20 @@ namespace ProyectoCoop1._0.Controllers
             if (user != null)
             {
                 var claims = new List<Claim>
-            {
-                new Claim(ClaimTypes.Name, user.usuario),
-                new Claim(ClaimTypes.Role, user.esadmin ? "Admin" : "Socio")
-            };
+        {
+            new Claim(ClaimTypes.Name, user.usuario),
+            new Claim(ClaimTypes.Role, user.esadmin ? "Admin" : "Socio")
+        };
 
                 var identity = new ClaimsIdentity(claims, "MyCookieAuth");
                 var principal = new ClaimsPrincipal(identity);
 
-                await HttpContext.SignInAsync("MyCookieAuth", principal);
+                var authProperties = new AuthenticationProperties
+                {
+                    IsPersistent = false // La cookie no se mantiene al cerrar el navegador
+                };
+
+                await HttpContext.SignInAsync("MyCookieAuth", principal, authProperties);
 
                 return user.esadmin
                     ? RedirectToAction("Index", "Socios")
@@ -131,6 +143,7 @@ namespace ProyectoCoop1._0.Controllers
             ViewBag.Error = "Credenciales inválidas";
             return View();
         }
+
 
         [HttpPost]
         [AllowAnonymous]

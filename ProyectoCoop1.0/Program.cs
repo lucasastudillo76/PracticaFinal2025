@@ -29,13 +29,19 @@ builder.Services.AddCors(options =>
               .AllowCredentials();
     });
 });
+builder.Services.AddAuthentication("MyCookieAuth")
+    .AddCookie("MyCookieAuth", options =>
+    {
+        options.LoginPath = "/Usuarios/Login"; // Ruta para la pantalla de login
+        options.AccessDeniedPath = "/AccessDenied";
+        options.Cookie.IsEssential = true;
+        options.ExpireTimeSpan = TimeSpan.FromMinutes(30); // o lo que prefieras
+        options.SlidingExpiration = true;
+        options.Cookie.HttpOnly = true;
+        options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+              
+    });
 
-// Configurar autenticación con cookies
-builder.Services.AddAuthentication("MyCookieAuth").AddCookie("MyCookieAuth", options =>
-{
-    options.LoginPath = "/Usuarios/Login"; // Ruta para la pantalla de login
-    options.AccessDeniedPath = "/AccessDenied";
-});
 
 var app = builder.Build();
 

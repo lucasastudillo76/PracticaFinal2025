@@ -1,0 +1,30 @@
+﻿@model IEnumerable<Turno>
+
+<h2>Turnos Suspendidos</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Fecha</th>
+            <th>Servicio</th>
+            <th>Tarea</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var turno in Model)
+        {
+            <tr>
+                <td>@turno.FechaHora</td>
+                <td>@turno.servicio</td>
+                <td>@turno.tarea</td>
+                <td>
+                    <a asp-action="Reprogramar" asp-route-id="@turno.id" class="btn btn-warning btn-sm">
+                        Reprogramar
+                    </a>
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

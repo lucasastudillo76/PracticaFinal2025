@@ -46,11 +46,12 @@
                     <input asp-for="estado" class="form-control" readonly />
                 }
                 else
-                {
-                    <select asp-for="estado" class="form-control">
-                        <option value="Pendiente" selected="@("Pendiente" == Model.estado)">Pendiente</option>
-                        <option value="Finalizado">Finalizado</option>
-                    </select>
+                {                                                   
+                        <select asp-for="estado" class="form-control">
+                            <option value="Pendiente" selected="@("Pendiente" == Model.estado)">Pendiente</option>
+                            <option value="Finalizado" selected="@("Finalizado" == Model.estado)">Finalizado</option>
+                            <option value="Suspendido" selected="@("Suspendido" == Model.estado)">Suspendido</option>
+                        </select>                    
                 }
 
                 <span asp-validation-for="estado" class="text-danger"></span>

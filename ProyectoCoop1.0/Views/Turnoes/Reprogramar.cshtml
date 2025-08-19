@@ -1,0 +1,53 @@
+﻿@model ProyectoCoop1._0.Models.Turno
+
+@{
+    ViewData["Title"] = "Reprogramar Turno";
+}
+
+<h2>Reprogramar Turno</h2>
+
+<form asp-action="Reprogramar" method="post">
+    <input type="hidden" asp-for="id" />
+
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div class="form-group">
+        <label asp-for="FechaHora" class="control-label"></label>
+        <input asp-for="FechaHora" type="datetime-local" class="form-control" />
+        <span asp-validation-for="FechaHora" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-success">Confirmar</button>
+    <a asp-action="TurnosSuspendidos" class="btn btn-secondary">Cancelar</a>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <script>
+        const inputFecha = document.querySelector("input[type='datetime-local']");
+        inputFecha.addEventListener("change", function () {
+            const fecha = new Date(this.value);
+            const dia = fecha.getDay(); // 0 = domingo, 6 = sábado
+            const hora = fecha.getHours();
+
+            let mensaje = "";
+
+            if (dia === 0 || dia === 6) {
+                mensaje += "Debe ser un día hábil (lunes a viernes).\n";
+            }
+
+            if (hora < 7 || hora > 11) {
+                mensaje += "Hora inválida. Debe ser entre 07:00 y 11:00.\n";
+            }
+
+            if (mensaje) {
+                alert(mensaje.trim());
+                this.value = "";
+            }
+        });
+    </script>
+}
+
