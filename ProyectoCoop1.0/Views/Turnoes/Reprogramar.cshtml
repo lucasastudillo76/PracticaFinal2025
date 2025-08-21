@@ -13,41 +13,59 @@
 
     <div class="form-group">
         <label asp-for="FechaHora" class="control-label"></label>
-        <input asp-for="FechaHora" type="datetime-local" class="form-control" />
+        <input asp-for="FechaHora" class="form-control" type="datetime-local"
+               value="@Model.FechaHora.ToString("yyyy-MM-ddTHH:mm")" />
         <span asp-validation-for="FechaHora" class="text-danger"></span>
+        <input type="hidden" asp-for="servicio" />
+        <input type="hidden" asp-for="tarea" />
+        <input type="hidden" asp-for="estado" />
     </div>
 
     <button type="submit" class="btn btn-success">Confirmar</button>
     <a asp-action="TurnosSuspendidos" class="btn btn-secondary">Cancelar</a>
 </form>
 
-@section Scripts {
-    @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
-    }
 
-    <script>
+@section Scripts {
+    @Html.Partial("_ValidationScriptsPartial")
+
+    <script> 
         const inputFecha = document.querySelector("input[type='datetime-local']");
-        inputFecha.addEventListener("change", function () {
-            const fecha = new Date(this.value);
+        const form = document.querySelector("form");
+
+        form.addEventListener("submit", function (e) {
+            const [datePart, timePart] = inputFecha.value.split("T");
+
+            if (!datePart || !timePart) return;
+
+            const [year, month, day] = datePart.split("-").map(Number);
+            const [hour, minute] = timePart.split(":").map(Number);
+
+            const fecha = new Date(year, month - 1, day, hour, minute);
+            const ahora = new Date();
+
             const dia = fecha.getDay(); // 0 = domingo, 6 = sábado
-            const hora = fecha.getHours();
 
             let mensaje = "";
+
+            if (fecha <= ahora) {
+                mensaje += "La fecha debe ser posterior a la actual.\n";
+            }
 
             if (dia === 0 || dia === 6) {
                 mensaje += "Debe ser un día hábil (lunes a viernes).\n";
             }
 
-            if (hora < 7 || hora > 11) {
+            if (hour < 7 || hour > 11) {
                 mensaje += "Hora inválida. Debe ser entre 07:00 y 11:00.\n";
             }
 
             if (mensaje) {
+                e.preventDefault(); // 🚫 Evita que el formulario se envíe
                 alert(mensaje.trim());
-                this.value = "";
             }
         });
     </script>
 }
+
 

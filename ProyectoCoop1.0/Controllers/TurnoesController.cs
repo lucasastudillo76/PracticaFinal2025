@@ -246,19 +246,37 @@ namespace ProyectoCoop1._0.Controllers
 
             return View(lista);
         }
+        
+
         [Authorize(Roles = "Socio")]
         public async Task<IActionResult> TurnosSuspendidos()
         {
-            var userEmail = User.Identity.Name;
+            string nombreUsuario = User.Identity.Name;
+
+            var usuario = await _dbContext.Usuarios
+                .FirstOrDefaultAsync(u => u.usuario == nombreUsuario);
+
+            if (usuario == null)
+                return Unauthorized();
+
+            var socio = await _dbContext.Socios
+                .FirstOrDefaultAsync(s => s.UsuarioId == usuario.id);
+
+            if (socio == null)
+                return NotFound("Socio no encontrado");
 
             var turnosSuspendidos = await _dbContext.Turnos
                 .Include(t => t.Socio)
-                .Where(t => t.estado == "Suspendido" && t.Socio.email == userEmail)
+                .Where(t => t.estado == "Suspendido" && t.socioId == socio.id)                
+                //.Include(t => t.tarea)
                 .ToListAsync();
 
             return View(turnosSuspendidos);
         }
+
+
         [Authorize(Roles = "Socio")]
+        [HttpGet]
         public async Task<IActionResult> Reprogramar(int id)
         {
             var turno = await _dbContext.Turnos.FindAsync(id);
@@ -266,52 +284,58 @@ namespace ProyectoCoop1._0.Controllers
 
             return View(turno);
         }
-        [HttpPost]
-        [Authorize(Roles = "Socio")]
-        [ValidateAntiForgeryToken]        
-        public async Task<IActionResult> Reprogramar(int id, [Bind("id,FechaHora")] Turno turnoInput)
-        {
-            var turno = await _dbContext.Turnos.FindAsync(id);
-            if (turno == null || turno.estado != "Suspendido")
-                return NotFound();
+        
+            [HttpPost]
+            [Authorize(Roles = "Socio")]
+            [ValidateAntiForgeryToken]
+            public async Task<IActionResult> Reprogramar(Turno turnoInput)
+            {
+                var turnoEnDb = await _dbContext.Turnos.FindAsync(turnoInput.id);
+                if (turnoEnDb == null || turnoEnDb.estado != "Suspendido")
+                    return NotFound();
 
-            var nuevaFecha = turnoInput.FechaHora;
+                // Validaciones sobre la nueva fecha
+                DateTime nuevaFecha = turnoInput.FechaHora;
 
-            // Validar fecha posterior a hoy
-            if (nuevaFecha <= DateTime.Now)
-                ModelState.AddModelError("FechaHora", "La fecha debe ser posterior a la actual.");
+                if (nuevaFecha == DateTime.MinValue)
+                    ModelState.AddModelError("FechaHora", "La fecha no puede ser vacía.");
 
-            // Validar días hábiles
-            if (nuevaFecha.DayOfWeek == DayOfWeek.Saturday || nuevaFecha.DayOfWeek == DayOfWeek.Sunday)
-                ModelState.AddModelError("FechaHora", "Debe elegir un día hábil (lunes a viernes).");
+                if (nuevaFecha <= DateTime.Now)
+                    ModelState.AddModelError("FechaHora", "La fecha debe ser posterior a la actual.");
 
-            // Validar rango horario
-            if (nuevaFecha.Hour < 7 || nuevaFecha.Hour > 11)
-                ModelState.AddModelError("FechaHora", "La hora debe estar entre 07:00 y 11:00.");
+                if (nuevaFecha.DayOfWeek == DayOfWeek.Saturday || nuevaFecha.DayOfWeek == DayOfWeek.Sunday)
+                    ModelState.AddModelError("FechaHora", "Debe elegir un día hábil.");
 
-            // Verificar si ya hay un turno en ese horario
-            bool yaExisteTurno = await _dbContext.Turnos.AnyAsync(t =>
-                t.id != turno.id &&
-                t.FechaHora == nuevaFecha &&
-                t.estado == "Pendiente"
-            );
+                if (nuevaFecha.Hour < 7 || nuevaFecha.Hour > 11)
+                    ModelState.AddModelError("FechaHora", "Hora fuera del horario permitido.");
 
-            if (yaExisteTurno)
-                ModelState.AddModelError("FechaHora", "Ya hay un turno programado en esa fecha y hora.");
+                bool yaExisteTurno = await _dbContext.Turnos.AnyAsync(t =>
+                    t.id != turnoEnDb.id &&
+                    t.FechaHora == nuevaFecha &&
+                    t.estado == "Pendiente");
 
-            // Si hubo errores, volver a la vista
-            if (!ModelState.IsValid)
-                return View(turno);
+                if (yaExisteTurno)
+                    ModelState.AddModelError("FechaHora", "Ya existe un turno en ese horario.");
 
-            // Actualizar turno
-            turno.FechaHora = nuevaFecha;
-            turno.estado = "Pendiente";
+                if (!ModelState.IsValid)
+                {
+                    // Mantenemos los valores originales en la vista
+                    turnoEnDb.FechaHora = turnoInput.FechaHora;
+                    return View(turnoEnDb);
+                }
 
-            _dbContext.Update(turno);
-            await _dbContext.SaveChangesAsync();
+                // ✔️ Solo modificamos lo que queremos
+                turnoEnDb.FechaHora = nuevaFecha;
+                turnoEnDb.estado = "Pendiente";
 
-            return RedirectToAction(nameof(TurnosSuspendidos)); // o lo que uses para volver
-        }
+                // No tocamos servicio, tarea, socioId, etc.
+                await _dbContext.SaveChangesAsync();
+
+                return RedirectToAction(nameof(TurnosSuspendidos));
+            }
+            //ModelState.Remove("servicio");
+            //ModelState.Remove("tarea");
+            //ModelState.Remove("estado");                    
 
         private bool TurnoExists(int id)
         {

@@ -15,7 +15,7 @@
             <!-- Fecha y Hora -->
             <div class="form-group">
                 <label asp-for="FechaHora" class="control-label"></label>
-                <input asp-for="FechaHora" class="form-control" type="datetime-local" min="@DateTime.Now.ToString("yyyy-MM-ddTHH:mm")" />
+                <input asp-for="FechaHora" id="fechaHora" class="form-control" type="datetime-local" min="@DateTime.Now.ToString("yyyy-MM-ddTHH:mm")" />
                 <span asp-validation-for="FechaHora" class="text-danger"></span>
             </div>
 
