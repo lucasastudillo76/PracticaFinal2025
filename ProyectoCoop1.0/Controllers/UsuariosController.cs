@@ -51,74 +51,36 @@ namespace ProyectoCoop1._0.Controllers
 
                 var authProperties = new AuthenticationProperties
                 {
-                    IsPersistent = false // La cookie no se mantiene al cerrar el navegador
+                    IsPersistent = false
                 };
 
                 await HttpContext.SignInAsync("MyCookieAuth", principalAdmin, authProperties);
                 return RedirectToAction("Index", "Socios");
             }
 
-            string usuarioNormalizado = usuario.Replace(" ", "").ToLower().Trim();
-            string contraseñaTrim = contraseña.Trim();
+            // Normalizamos credenciales ingresadas
+            string usuarioNormalizado = usuario.Replace(" ", "").ToLowerInvariant().Trim();
+            string contraseñaNormalizada = contraseña.Trim();
 
-            // Intentamos login por nombre de usuario
-            var user = await _context.Usuarios
-                .FirstOrDefaultAsync(u =>
-                    u.usuario.ToLower() == usuarioNormalizado &&
-                    u.contrasenia == contraseñaTrim);
+            Usuario user = null;
 
-            if (user != null)
-            {
-                Console.WriteLine($"Usuario encontrado por nombre de usuario: {user.usuario}");
-            }
+            // Buscar solo por Socios.usuarioLogin
+            var socios = (await _context.Socios
+                .Include(s => s.Usuario)
+                .ToListAsync())
+                .AsEnumerable();
 
-            // Si no se encontró usuario, intentamos buscar socio por nombre+apellido juntos sin espacio
-            if (user == null)
-            {
-                Console.WriteLine("No se encontró por nombre de usuario, intentando con nombre+apellido.");
+            var socio = socios.FirstOrDefault(s =>
+                (s.usuarioLogin ?? "").Replace(" ", "").ToLowerInvariant().Trim() == usuarioNormalizado &&
+                s.Usuario != null &&
+                (s.Usuario.contrasenia ?? "").Trim() == contraseñaNormalizada);
 
-                var socio = await _context.Socios
-                    .Include(s => s.Usuario)
-                    .FirstOrDefaultAsync(s =>
-                        (s.nombre.Trim() + s.apellido.Trim()).ToLower() == usuarioNormalizado &&
-                        s.Usuario != null &&
-                        s.Usuario.contrasenia == contraseñaTrim);
-
-                user = socio?.Usuario;
-
-                if (user != null)
-                {
-                    Console.WriteLine($"Usuario encontrado por nombre+apellido: {user.usuario}");
-                }
-            }
-
-            // Si sigue sin encontrar, intentamos separar el input en nombre y apellido
-            if (user == null && usuario.Trim().Contains(" "))
-            {
-                var partes = usuario.Trim().Split(' ', 2); // Divide en 2 partes: nombre y apellido
-                string nombreBuscado = partes[0].ToLower();
-                string apellidoBuscado = partes[1].ToLower();
-
-                Console.WriteLine($"Buscando por nombre: {nombreBuscado}, apellido: {apellidoBuscado}");
-
-                var socio = await _context.Socios
-                    .Include(s => s.Usuario)
-                    .FirstOrDefaultAsync(s =>
-                        s.nombre.ToLower() == nombreBuscado &&
-                        s.apellido.ToLower() == apellidoBuscado &&
-                        s.Usuario != null &&
-                        s.Usuario.contrasenia == contraseñaTrim);
-
-                user = socio?.Usuario;
-
-                if (user != null)
-                {
-                    Console.WriteLine($"Usuario encontrado por nombre y apellido separados: {user.usuario}");
-                }
-            }
+            user = socio?.Usuario;
 
             if (user != null)
             {
+                Console.WriteLine($"Usuario encontrado por Socios.usuarioLogin: {user.usuario}");
+
                 var claims = new List<Claim>
         {
             new Claim(ClaimTypes.Name, user.usuario),
@@ -128,10 +90,7 @@ namespace ProyectoCoop1._0.Controllers
                 var identity = new ClaimsIdentity(claims, "MyCookieAuth");
                 var principal = new ClaimsPrincipal(identity);
 
-                var authProperties = new AuthenticationProperties
-                {
-                    IsPersistent = false // La cookie no se mantiene al cerrar el navegador
-                };
+                var authProperties = new AuthenticationProperties();
 
                 await HttpContext.SignInAsync("MyCookieAuth", principal, authProperties);
 
@@ -140,10 +99,10 @@ namespace ProyectoCoop1._0.Controllers
                     : RedirectToAction("CreateTurnoSocio", "Turnoes");
             }
 
+            // Falló el login
             ViewBag.Error = "Credenciales inválidas";
             return View();
         }
-
 
         [HttpPost]
         [AllowAnonymous]

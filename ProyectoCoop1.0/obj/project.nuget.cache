@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "kNo7lMrH/Yk=",
+  "dgSpecHash": "RpqHuX2ciew=",
   "success": true,
   "projectFilePath": "C:\\Users\\Lucas Astudillo\\Desktop\\Practicas Git\\PracticaFinal2025\\ProyectoCoop1.0\\ProyectoCoop1.0.csproj",
   "expectedPackageFiles": [
@@ -174,7 +174,9 @@
     "C:\\Users\\Lucas Astudillo\\.nuget\\packages\\system.threading.channels\\7.0.0\\system.threading.channels.7.0.0.nupkg.sha512",
     "C:\\Users\\Lucas Astudillo\\.nuget\\packages\\system.threading.tasks.dataflow\\7.0.0\\system.threading.tasks.dataflow.7.0.0.nupkg.sha512",
     "C:\\Users\\Lucas Astudillo\\.nuget\\packages\\system.threading.tasks.extensions\\4.5.4\\system.threading.tasks.extensions.4.5.4.nupkg.sha512",
-    "C:\\Users\\Lucas Astudillo\\.nuget\\packages\\system.windows.extensions\\7.0.0\\system.windows.extensions.7.0.0.nupkg.sha512"
+    "C:\\Users\\Lucas Astudillo\\.nuget\\packages\\system.windows.extensions\\7.0.0\\system.windows.extensions.7.0.0.nupkg.sha512",
+    "C:\\Users\\Lucas Astudillo\\.nuget\\packages\\x.pagedlist\\10.5.9\\x.pagedlist.10.5.9.nupkg.sha512",
+    "C:\\Users\\Lucas Astudillo\\.nuget\\packages\\x.pagedlist.mvc.core\\10.5.9\\x.pagedlist.mvc.core.10.5.9.nupkg.sha512"
   ],
   "logs": []
 }

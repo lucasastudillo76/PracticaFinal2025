@@ -2,7 +2,7 @@
 
 <h2>Turnos Suspendidos</h2>
 
-<table class="table">
+<table class="table table-bordered table-striped">
     <thead>
         <tr>
             <th>Fecha</th>
@@ -12,19 +12,11 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var turno in Model)
+        @if (!Model.Any())
         {
             <tr>
-                <td>@turno.FechaHora</td>
-                <td>@turno.servicio</td>
-                <td>@turno.tarea</td>
-                <td>
-                    <a asp-action="Reprogramar" asp-route-id="@turno.id" class="btn btn-warning btn-sm">
-                        Reprogramar
-                    </a>
-
-                </td>
+                <td colspan="4" class="text-center text-muted">No hay turnos registrados.</td>
             </tr>
-        }
+        }      
     </tbody>
 </table>

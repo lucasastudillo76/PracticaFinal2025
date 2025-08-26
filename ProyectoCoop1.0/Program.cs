@@ -29,19 +29,30 @@ builder.Services.AddCors(options =>
               .AllowCredentials();
     });
 });
+
+// Configuración de autenticación con cookies
 builder.Services.AddAuthentication("MyCookieAuth")
     .AddCookie("MyCookieAuth", options =>
     {
-        options.LoginPath = "/Usuarios/Login"; // Ruta para la pantalla de login
-        options.AccessDeniedPath = "/AccessDenied";
+        options.LoginPath = "/Usuarios/Login";
+        options.LogoutPath = "/Usuarios/Login";
+        options.AccessDeniedPath = "/Usuarios/AccessDenied";
+
         options.Cookie.IsEssential = true;
-        options.ExpireTimeSpan = TimeSpan.FromMinutes(30); // o lo que prefieras
-        options.SlidingExpiration = true;
         options.Cookie.HttpOnly = true;
         options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
-              
-    });
 
+        // ✅ La cookie no es persistente (se elimina al cerrar el navegador)
+        options.ExpireTimeSpan = TimeSpan.FromMinutes(20); // Opcional: caduca por inactividad
+
+        options.SlidingExpiration = false;
+
+        options.Events.OnSigningIn = context =>
+        {
+            context.Properties.IsPersistent = false; // 🔥 No se guarda la cookie en disco
+            return Task.CompletedTask;
+        };
+    });
 
 var app = builder.Build();
 
@@ -58,11 +69,9 @@ app.UseRouting();
 
 app.UseCors("AllowLocalhost7138");
 
-// Habilitar sesión (esto es lo que te faltaba)
-app.UseSession();
-
-app.UseAuthentication();
-app.UseAuthorization();
+app.UseSession();            // Habilitar sesiones
+app.UseAuthentication();     // Habilitar autenticación
+app.UseAuthorization();      // Habilitar autorización
 
 app.MapControllerRoute(
     name: "default",
@@ -73,7 +82,7 @@ using (var scope = app.Services.CreateScope())
 {
     var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
 
-    context.Database.EnsureCreated(); // Por si no se creó
+    context.Database.EnsureCreated();
 
     var admin = context.Usuarios.FirstOrDefault(u => u.usuario == "admin");
     if (admin == null)

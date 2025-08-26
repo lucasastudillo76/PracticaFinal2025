@@ -55,7 +55,8 @@
                 <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
             </div>
         </form>
-    </div>
+    </div>    
+
 </div>
 
 @section Scripts {
@@ -96,26 +97,40 @@
                     tareaSelect.appendChild(option);
                 });
             }
-        });          
-        const fechaHoraInput = document.getElementById("fechaHora");
+        });
+        const inputFecha = document.querySelector("input[type='datetime-local']");
+        const form = document.querySelector("form");
 
-        fechaHoraInput.addEventListener("change", function () {
-            const fechaSeleccionada = new Date(this.value);
-            const diaSemana = fechaSeleccionada.getDay(); // 0 (domingo) a 6 (sábado)
-            const hora = fechaSeleccionada.getHours();
+        form.addEventListener("submit", function (e) {
+            const [datePart, timePart] = inputFecha.value.split("T");
 
-            // Validar días hábiles
-            if (diaSemana === 0 || diaSemana === 6) {
-                alert("Por favor seleccione un día hábil (lunes a viernes).");
-                this.value = "";
-                return;
+            if (!datePart || !timePart) return;
+
+            const [year, month, day] = datePart.split("-").map(Number);
+            const [hour, minute] = timePart.split(":").map(Number);
+
+            const fecha = new Date(year, month - 1, day, hour, minute);
+            const ahora = new Date();
+
+            const dia = fecha.getDay(); // 0 = domingo, 6 = sábado
+
+            let mensaje = "";
+
+            if (fecha <= ahora) {
+                mensaje += "La fecha debe ser posterior a la actual.\n";
             }
 
-            // Validar hora entre 07:00 y 11:00 (turno de 1h, termina 12:00)
-            if (hora < 7 || hora > 11) {
-                alert("Por favor seleccione una hora entre las 07:00 y las 11:00.");
-                this.value = "";
-                return;
+            if (dia === 0 || dia === 6) {
+                mensaje += "Debe ser un día hábil (lunes a viernes).\n";
+            }
+
+            if (hour < 7 || hour > 11) {
+                mensaje += "Hora inválida. Debe ser entre 07:00 y 11:00.\n";
+            }
+
+            if (mensaje) {
+                e.preventDefault(); // 🚫 Evita que el formulario se envíe
+                alert(mensaje.trim());
             }
         });
         

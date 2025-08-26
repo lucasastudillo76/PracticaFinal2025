@@ -229,7 +229,7 @@ namespace ProyectoCoop1._0.Controllers
         {
             var turnosFinalizados = _dbContext.Turnos
                 .Include(t => t.Socio)
-                .Where(t => t.estado == "Finalizado" || t.estado == "Suspendido");
+                .Where(t => t.estado == "Finalizado" || t.estado == "Suspendido" || t.estado == "Cancelado");
 
             if (!string.IsNullOrEmpty(filtroApellido))
             {
@@ -251,25 +251,20 @@ namespace ProyectoCoop1._0.Controllers
         [Authorize(Roles = "Socio")]
         public async Task<IActionResult> TurnosSuspendidos()
         {
-            string nombreUsuario = User.Identity.Name;
+            var usuarioLogin = User.Identity?.Name?.Trim().ToLower();
 
-            var usuario = await _dbContext.Usuarios
-                .FirstOrDefaultAsync(u => u.usuario == nombreUsuario);
-
-            if (usuario == null)
+            if (string.IsNullOrEmpty(usuarioLogin))
                 return Unauthorized();
 
             var socio = await _dbContext.Socios
-                .FirstOrDefaultAsync(s => s.UsuarioId == usuario.id);
+        .FirstOrDefaultAsync(s => s.usuarioLogin.ToLower() == usuarioLogin);
 
             if (socio == null)
                 return NotFound("Socio no encontrado");
 
             var turnosSuspendidos = await _dbContext.Turnos
-                .Include(t => t.Socio)
-                .Where(t => t.estado == "Suspendido" && t.socioId == socio.id)                
-                //.Include(t => t.tarea)
-                .ToListAsync();
+        .Where(t => t.estado == "Suspendido" && t.socioId == socio.id)
+        .ToListAsync();
 
             return View(turnosSuspendidos);
         }
@@ -322,20 +317,59 @@ namespace ProyectoCoop1._0.Controllers
                     // Mantenemos los valores originales en la vista
                     turnoEnDb.FechaHora = turnoInput.FechaHora;
                     return View(turnoEnDb);
+
                 }
 
                 // ✔️ Solo modificamos lo que queremos
                 turnoEnDb.FechaHora = nuevaFecha;
                 turnoEnDb.estado = "Pendiente";
 
+
                 // No tocamos servicio, tarea, socioId, etc.
                 await _dbContext.SaveChangesAsync();
 
-                return RedirectToAction(nameof(TurnosSuspendidos));
+
+            ViewBag.MensajeReprogramacion = $"Su turno ha sido reprogramado para {turnoEnDb.FechaHora:dd/MM/yyyy HH:mm} con éxito.";
+            return View(turnoEnDb);
             }
-            //ModelState.Remove("servicio");
-            //ModelState.Remove("tarea");
-            //ModelState.Remove("estado");                    
+
+        [Authorize(Roles = "Socio")]
+        public async Task<IActionResult> MisTurnos()
+        {
+            var usuarioLogin = User.Identity?.Name?.Trim().ToLower();
+
+            if (string.IsNullOrEmpty(usuarioLogin))
+                return Unauthorized();
+
+            var socio = await _dbContext.Socios
+                .FirstOrDefaultAsync(s => s.usuarioLogin.ToLower() == usuarioLogin);
+
+            if (socio == null)
+                return NotFound();
+
+            var turnos = await _dbContext.Turnos
+                .Where(t => t.socioId == socio.id)
+                .OrderByDescending(t => t.FechaHora)
+                .ToListAsync();
+
+            return View(turnos);
+        }
+        [HttpGet]
+        public IActionResult Cancelar(int id)
+        {
+            var turno = _dbContext.Turnos.FirstOrDefault(t => t.id == id);
+            if (turno == null)
+            {
+                return NotFound();
+            }
+
+            // Cambiar estado o eliminar, según lógica
+            turno.estado = "Cancelado";
+            _dbContext.SaveChanges();
+
+            return RedirectToAction("MisTurnos");
+        }
+
 
         private bool TurnoExists(int id)
         {

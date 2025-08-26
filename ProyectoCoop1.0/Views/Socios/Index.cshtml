@@ -1,4 +1,7 @@
-﻿@model IEnumerable<ProyectoCoop1._0.Models.Socio>
+﻿@model X.PagedList.IPagedList<ProyectoCoop1._0.Models.Socio>
+
+@using X.PagedList.Mvc.Core
+
 
 @{
     ViewData["Title"] = "Index";
@@ -8,85 +11,78 @@
 
 <p>
     <a asp-action="Create">Create New</a></br>
-    <a asp-action="Importar" class="btn btn-primary">Importar desde Excel</a></<br>
+    <a asp-action="Importar" class="btn btn-primary">Importar desde Excel</a><br />
     <a asp-action="Exportar" class="btn btn-primary">Exportar a Excel</a>
-    <form method="get" asp-action="Index" class="mb-3">
-        <div class="form-row">
-            <div class="col-md-2">
-                <input type="number" name="id" class="form-control" placeholder="Buscar por ID" value="@Context.Request.Query["id"]" />
-            </div>
-            <div class="col-md-3">
-                <input type="text" name="apellido" class="form-control" placeholder="Buscar por apellido" value="@Context.Request.Query["apellido"]" />
-            </div>
-            <div class="col-md-2">
-                <button type="submit" class="btn btn-primary">Buscar</button>
-            </div>
-            <div class="col-md-2">
-                <a asp-action="Index" class="btn btn-secondary">Limpiar</a>
-            </div>
-        </div>
-    </form>
-
 </p>
+
+<form method="get" asp-action="Index" class="mb-3">
+    <div class="form-row">
+        <div class="col-md-2">
+            <input type="number" name="id" class="form-control" placeholder="Buscar por ID" value="@Context.Request.Query["id"]" />
+        </div>
+        <div class="col-md-3">
+            <input type="text" name="apellido" class="form-control" placeholder="Buscar por apellido" value="@Context.Request.Query["apellido"]" />
+        </div>
+        <div class="col-md-2">
+            <button type="submit" class="btn btn-primary">Buscar</button>
+        </div>
+        <div class="col-md-2">
+            <a asp-action="Index" class="btn btn-secondary">Limpiar</a>
+        </div>
+    </div>
+</form>
+
 <table class="table">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.id)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.nombre)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.apellido)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.email)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.telefono)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.direccion)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.usuarioLogin)
-            </th
+            <th>@Html.DisplayNameFor(model => model[0].id)</th>
+            <th>@Html.DisplayNameFor(model => model[0].nombre)</th>
+            <th>@Html.DisplayNameFor(model => model[0].apellido)</th>
+            <th>@Html.DisplayNameFor(model => model[0].email)</th>
+            <th>@Html.DisplayNameFor(model => model[0].telefono)</th>
+            <th>@Html.DisplayNameFor(model => model[0].direccion)</th>
+            <th>@Html.DisplayNameFor(model => model[0].usuarioLogin)</th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                    @Html.DisplayFor(modelItem => item.id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.nombre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.apellido)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.telefono)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.direccion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.usuarioLogin)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.id">Delete</a>
-                
-
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.id)</td>
+                <td>@Html.DisplayFor(modelItem => item.nombre)</td>
+                <td>@Html.DisplayFor(modelItem => item.apellido)</td>
+                <td>@Html.DisplayFor(modelItem => item.email)</td>
+                <td>@Html.DisplayFor(modelItem => item.telefono)</td>
+                <td>@Html.DisplayFor(modelItem => item.direccion)</td>
+                <td>@Html.DisplayFor(modelItem => item.usuarioLogin)</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.id">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
+
+    <div class="d-flex justify-content-center mt-4">
+        @Html.PagedListPager(Model, page => Url.Action("Index", new {
+        page,
+        id = Context.Request.Query["id"].ToString(),
+        apellido = Context.Request.Query["apellido"].ToString()
+                }), new PagedListRenderOptions
+        {
+            DisplayLinkToFirstPage = PagedListDisplayMode.Always,
+            DisplayLinkToLastPage = PagedListDisplayMode.Always,
+            DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
+            DisplayLinkToNextPage = PagedListDisplayMode.Always,
+            DisplayLinkToIndividualPages = true,
+            MaximumPageNumbersToDisplay = 5,
+            UlElementClasses = new[] { "pagination" },
+            LiElementClasses = new[] { "page-item" },
+            PageClasses = new[] { "page-link" }
+        })
+    </div>
+
+

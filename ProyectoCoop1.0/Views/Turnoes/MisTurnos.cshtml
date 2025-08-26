@@ -1,0 +1,51 @@
+﻿@model List<ProyectoCoop1._0.Models.Turno>
+
+@{
+    ViewData["Title"] = "Mis Turnos";
+}
+
+<h2>Mis Turnos</h2>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Fecha</th>
+            <th>Servicio</th>
+            <th>Tarea</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (!Model.Any())
+        {
+            <tr>
+                <td colspan="5" class="text-center">No hay turnos registrados.</td>
+            </tr>
+        }
+        else
+        {
+            foreach (var turno in Model)
+            {
+                <tr>
+                    <td>@turno.FechaHora.ToString("dd/MM/yyyy HH:mm")</td>
+                    <td>@turno.servicio</td>
+                    <td>@turno.tarea</td>
+                    <td>@turno.estado</td>
+                    <td>                        
+                        @if (turno.estado == "Pendiente")
+                        {
+                            <a asp-action="Cancelar" asp-route-id="@turno.id" class="btn btn-sm btn-danger">Cancelar</a>
+                        }
+                        @if (turno.estado == "Suspendido")
+                        {
+                            <a asp-action="Reprogramar" asp-route-id="@turno.id" class="btn btn-sm btn-primary">Reprogramar</a>
+                        }
+                    </td>
+                </tr>
+            }
+        }
+
+    </tbody>
+</table>
+

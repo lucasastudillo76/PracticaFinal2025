@@ -3,60 +3,32 @@
   "WorkspaceRootPath": "C:\\Users\\Lucas Astudillo\\Desktop\\Practicas Git\\PracticaFinal2025\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{7F755742-A5FC-4655-81A3-24DB9D9F42A5}|ProyectoCoop1.0\\ProyectoCoop1.0.csproj|c:\\users\\lucas astudillo\\desktop\\practicas git\\practicafinal2025\\proyectocoop1.0\\controllers\\turnoescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7F755742-A5FC-4655-81A3-24DB9D9F42A5}|ProyectoCoop1.0\\ProyectoCoop1.0.csproj|solutionrelative:proyectocoop1.0\\controllers\\turnoescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{7F755742-A5FC-4655-81A3-24DB9D9F42A5}|ProyectoCoop1.0\\ProyectoCoop1.0.csproj|c:\\users\\lucas astudillo\\desktop\\practicas git\\practicafinal2025\\proyectocoop1.0\\views\\turnoes\\finalizados.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{7F755742-A5FC-4655-81A3-24DB9D9F42A5}|ProyectoCoop1.0\\ProyectoCoop1.0.csproj|solutionrelative:proyectocoop1.0\\views\\turnoes\\finalizados.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7F755742-A5FC-4655-81A3-24DB9D9F42A5}|ProyectoCoop1.0\\ProyectoCoop1.0.csproj|c:\\users\\lucas astudillo\\desktop\\practicas git\\practicafinal2025\\proyectocoop1.0\\views\\turnoes\\reprogramar.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{7F755742-A5FC-4655-81A3-24DB9D9F42A5}|ProyectoCoop1.0\\ProyectoCoop1.0.csproj|solutionrelative:proyectocoop1.0\\views\\turnoes\\reprogramar.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{7F755742-A5FC-4655-81A3-24DB9D9F42A5}|ProyectoCoop1.0\\ProyectoCoop1.0.csproj|c:\\users\\lucas astudillo\\desktop\\practicas git\\practicafinal2025\\proyectocoop1.0\\views\\turnoes\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{7F755742-A5FC-4655-81A3-24DB9D9F42A5}|ProyectoCoop1.0\\ProyectoCoop1.0.csproj|solutionrelative:proyectocoop1.0\\views\\turnoes\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{7F755742-A5FC-4655-81A3-24DB9D9F42A5}|ProyectoCoop1.0\\ProyectoCoop1.0.csproj|c:\\users\\lucas astudillo\\desktop\\practicas git\\practicafinal2025\\proyectocoop1.0\\views\\turnoes\\turnossuspendidos.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{7F755742-A5FC-4655-81A3-24DB9D9F42A5}|ProyectoCoop1.0\\ProyectoCoop1.0.csproj|solutionrelative:proyectocoop1.0\\views\\turnoes\\turnossuspendidos.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{7F755742-A5FC-4655-81A3-24DB9D9F42A5}|ProyectoCoop1.0\\ProyectoCoop1.0.csproj|c:\\users\\lucas astudillo\\desktop\\practicas git\\practicafinal2025\\proyectocoop1.0\\views\\turnoes\\reprogramar.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{7F755742-A5FC-4655-81A3-24DB9D9F42A5}|ProyectoCoop1.0\\ProyectoCoop1.0.csproj|solutionrelative:proyectocoop1.0\\views\\turnoes\\reprogramar.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7F755742-A5FC-4655-81A3-24DB9D9F42A5}|ProyectoCoop1.0\\ProyectoCoop1.0.csproj|c:\\users\\lucas astudillo\\desktop\\practicas git\\practicafinal2025\\proyectocoop1.0\\views\\turnoes\\misturnos.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{7F755742-A5FC-4655-81A3-24DB9D9F42A5}|ProyectoCoop1.0\\ProyectoCoop1.0.csproj|solutionrelative:proyectocoop1.0\\views\\turnoes\\misturnos.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{7F755742-A5FC-4655-81A3-24DB9D9F42A5}|ProyectoCoop1.0\\ProyectoCoop1.0.csproj|c:\\users\\lucas astudillo\\desktop\\practicas git\\practicafinal2025\\proyectocoop1.0\\views\\turnoes\\createturnosocio.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{7F755742-A5FC-4655-81A3-24DB9D9F42A5}|ProyectoCoop1.0\\ProyectoCoop1.0.csproj|solutionrelative:proyectocoop1.0\\views\\turnoes\\createturnosocio.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7F755742-A5FC-4655-81A3-24DB9D9F42A5}|ProyectoCoop1.0\\ProyectoCoop1.0.csproj|c:\\users\\lucas astudillo\\desktop\\practicas git\\practicafinal2025\\proyectocoop1.0\\models\\turno.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7F755742-A5FC-4655-81A3-24DB9D9F42A5}|ProyectoCoop1.0\\ProyectoCoop1.0.csproj|solutionrelative:proyectocoop1.0\\models\\turno.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7F755742-A5FC-4655-81A3-24DB9D9F42A5}|ProyectoCoop1.0\\ProyectoCoop1.0.csproj|c:\\users\\lucas astudillo\\desktop\\practicas git\\practicafinal2025\\proyectocoop1.0\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{7F755742-A5FC-4655-81A3-24DB9D9F42A5}|ProyectoCoop1.0\\ProyectoCoop1.0.csproj|solutionrelative:proyectocoop1.0\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7F755742-A5FC-4655-81A3-24DB9D9F42A5}|ProyectoCoop1.0\\ProyectoCoop1.0.csproj|c:\\users\\lucas astudillo\\desktop\\practicas git\\practicafinal2025\\proyectocoop1.0\\views\\socios\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{7F755742-A5FC-4655-81A3-24DB9D9F42A5}|ProyectoCoop1.0\\ProyectoCoop1.0.csproj|solutionrelative:proyectocoop1.0\\views\\socios\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7F755742-A5FC-4655-81A3-24DB9D9F42A5}|ProyectoCoop1.0\\ProyectoCoop1.0.csproj|c:\\users\\lucas astudillo\\desktop\\practicas git\\practicafinal2025\\proyectocoop1.0\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7F755742-A5FC-4655-81A3-24DB9D9F42A5}|ProyectoCoop1.0\\ProyectoCoop1.0.csproj|solutionrelative:proyectocoop1.0\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7F755742-A5FC-4655-81A3-24DB9D9F42A5}|ProyectoCoop1.0\\ProyectoCoop1.0.csproj|c:\\users\\lucas astudillo\\desktop\\practicas git\\practicafinal2025\\proyectocoop1.0\\controllers\\socioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7F755742-A5FC-4655-81A3-24DB9D9F42A5}|ProyectoCoop1.0\\ProyectoCoop1.0.csproj|solutionrelative:proyectocoop1.0\\controllers\\socioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7F755742-A5FC-4655-81A3-24DB9D9F42A5}|ProyectoCoop1.0\\ProyectoCoop1.0.csproj|c:\\users\\lucas astudillo\\desktop\\practicas git\\practicafinal2025\\proyectocoop1.0\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7F755742-A5FC-4655-81A3-24DB9D9F42A5}|ProyectoCoop1.0\\ProyectoCoop1.0.csproj|solutionrelative:proyectocoop1.0\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7F755742-A5FC-4655-81A3-24DB9D9F42A5}|ProyectoCoop1.0\\ProyectoCoop1.0.csproj|c:\\users\\lucas astudillo\\desktop\\practicas git\\practicafinal2025\\proyectocoop1.0\\views\\turnoes\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{7F755742-A5FC-4655-81A3-24DB9D9F42A5}|ProyectoCoop1.0\\ProyectoCoop1.0.csproj|solutionrelative:proyectocoop1.0\\views\\turnoes\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7F755742-A5FC-4655-81A3-24DB9D9F42A5}|ProyectoCoop1.0\\ProyectoCoop1.0.csproj|c:\\users\\lucas astudillo\\desktop\\practicas git\\practicafinal2025\\proyectocoop1.0\\views\\home\\privacy.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{7F755742-A5FC-4655-81A3-24DB9D9F42A5}|ProyectoCoop1.0\\ProyectoCoop1.0.csproj|solutionrelative:proyectocoop1.0\\views\\home\\privacy.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7F755742-A5FC-4655-81A3-24DB9D9F42A5}|ProyectoCoop1.0\\ProyectoCoop1.0.csproj|c:\\users\\lucas astudillo\\desktop\\practicas git\\practicafinal2025\\proyectocoop1.0\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{7F755742-A5FC-4655-81A3-24DB9D9F42A5}|ProyectoCoop1.0\\ProyectoCoop1.0.csproj|solutionrelative:proyectocoop1.0\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7F755742-A5FC-4655-81A3-24DB9D9F42A5}|ProyectoCoop1.0\\ProyectoCoop1.0.csproj|c:\\users\\lucas astudillo\\desktop\\practicas git\\practicafinal2025\\proyectocoop1.0\\views\\turnoes\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{7F755742-A5FC-4655-81A3-24DB9D9F42A5}|ProyectoCoop1.0\\ProyectoCoop1.0.csproj|solutionrelative:proyectocoop1.0\\views\\turnoes\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{7F755742-A5FC-4655-81A3-24DB9D9F42A5}|ProyectoCoop1.0\\ProyectoCoop1.0.csproj|c:\\users\\lucas astudillo\\desktop\\practicas git\\practicafinal2025\\proyectocoop1.0\\controllers\\turnoescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7F755742-A5FC-4655-81A3-24DB9D9F42A5}|ProyectoCoop1.0\\ProyectoCoop1.0.csproj|solutionrelative:proyectocoop1.0\\controllers\\turnoescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -66,7 +38,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Bookmark",
@@ -74,41 +46,15 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "TurnoesController.cs",
-              "DocumentMoniker": "C:\\Users\\Lucas Astudillo\\Desktop\\Practicas Git\\PracticaFinal2025\\ProyectoCoop1.0\\Controllers\\TurnoesController.cs",
-              "RelativeDocumentMoniker": "ProyectoCoop1.0\\Controllers\\TurnoesController.cs",
-              "ToolTip": "C:\\Users\\Lucas Astudillo\\Desktop\\Practicas Git\\PracticaFinal2025\\ProyectoCoop1.0\\Controllers\\TurnoesController.cs",
-              "RelativeToolTip": "ProyectoCoop1.0\\Controllers\\TurnoesController.cs",
-              "ViewState": "AgIAAA4BAAAAAAAAAAAAABYBAAARAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-18T23:38:00.6Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "_Layout.cshtml",
-              "DocumentMoniker": "C:\\Users\\Lucas Astudillo\\Desktop\\Practicas Git\\PracticaFinal2025\\ProyectoCoop1.0\\Views\\Shared\\_Layout.cshtml",
-              "RelativeDocumentMoniker": "ProyectoCoop1.0\\Views\\Shared\\_Layout.cshtml",
-              "ToolTip": "C:\\Users\\Lucas Astudillo\\Desktop\\Practicas Git\\PracticaFinal2025\\ProyectoCoop1.0\\Views\\Shared\\_Layout.cshtml",
-              "RelativeToolTip": "ProyectoCoop1.0\\Views\\Shared\\_Layout.cshtml",
-              "ViewState": "AgIAACsAAAAAAAAAAAAIwDMAAAAlAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-08-19T01:51:03.686Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Reprogramar.cshtml",
-              "DocumentMoniker": "C:\\Users\\Lucas Astudillo\\Desktop\\Practicas Git\\PracticaFinal2025\\ProyectoCoop1.0\\Views\\Turnoes\\Reprogramar.cshtml",
-              "RelativeDocumentMoniker": "ProyectoCoop1.0\\Views\\Turnoes\\Reprogramar.cshtml",
-              "ToolTip": "C:\\Users\\Lucas Astudillo\\Desktop\\Practicas Git\\PracticaFinal2025\\ProyectoCoop1.0\\Views\\Turnoes\\Reprogramar.cshtml",
-              "RelativeToolTip": "ProyectoCoop1.0\\Views\\Turnoes\\Reprogramar.cshtml",
-              "ViewState": "AgIAAAsAAAAAAAAAAAAAABQAAAAwAAAAAAAAAA==",
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\Lucas Astudillo\\Desktop\\Practicas Git\\PracticaFinal2025\\ProyectoCoop1.0\\Views\\Turnoes\\Index.cshtml",
+              "RelativeDocumentMoniker": "ProyectoCoop1.0\\Views\\Turnoes\\Index.cshtml",
+              "ToolTip": "C:\\Users\\Lucas Astudillo\\Desktop\\Practicas Git\\PracticaFinal2025\\ProyectoCoop1.0\\Views\\Turnoes\\Index.cshtml",
+              "RelativeToolTip": "ProyectoCoop1.0\\Views\\Turnoes\\Index.cshtml",
+              "ViewState": "AgIAACIAAAAAAAAAAAAqwDAAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-08-19T00:31:52.929Z",
+              "WhenOpened": "2025-08-26T01:36:12.415Z",
               "EditorCaption": ""
             },
             {
@@ -119,133 +65,75 @@
               "RelativeDocumentMoniker": "ProyectoCoop1.0\\Views\\Turnoes\\TurnosSuspendidos.cshtml",
               "ToolTip": "C:\\Users\\Lucas Astudillo\\Desktop\\Practicas Git\\PracticaFinal2025\\ProyectoCoop1.0\\Views\\Turnoes\\TurnosSuspendidos.cshtml",
               "RelativeToolTip": "ProyectoCoop1.0\\Views\\Turnoes\\TurnosSuspendidos.cshtml",
-              "ViewState": "AgIAAA4AAAAAAAAAAADwvxYAAAAUAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-08-19T00:29:12.234Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\Lucas Astudillo\\Desktop\\Practicas Git\\PracticaFinal2025\\ProyectoCoop1.0\\Program.cs",
-              "RelativeDocumentMoniker": "ProyectoCoop1.0\\Program.cs",
-              "ToolTip": "C:\\Users\\Lucas Astudillo\\Desktop\\Practicas Git\\PracticaFinal2025\\ProyectoCoop1.0\\Program.cs",
-              "RelativeToolTip": "ProyectoCoop1.0\\Program.cs",
-              "ViewState": "AgIAACMAAAAAAAAAAAAIwCkAAAAHAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-19T01:52:55.48Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Turno.cs",
-              "DocumentMoniker": "C:\\Users\\Lucas Astudillo\\Desktop\\Practicas Git\\PracticaFinal2025\\ProyectoCoop1.0\\Models\\Turno.cs",
-              "RelativeDocumentMoniker": "ProyectoCoop1.0\\Models\\Turno.cs",
-              "ToolTip": "C:\\Users\\Lucas Astudillo\\Desktop\\Practicas Git\\PracticaFinal2025\\ProyectoCoop1.0\\Models\\Turno.cs",
-              "RelativeToolTip": "ProyectoCoop1.0\\Models\\Turno.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAAAAABUAAAAVAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-19T00:10:19.688Z",
+              "WhenOpened": "2025-08-26T01:36:03.393Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
+              "Title": "Reprogramar.cshtml",
+              "DocumentMoniker": "C:\\Users\\Lucas Astudillo\\Desktop\\Practicas Git\\PracticaFinal2025\\ProyectoCoop1.0\\Views\\Turnoes\\Reprogramar.cshtml",
+              "RelativeDocumentMoniker": "ProyectoCoop1.0\\Views\\Turnoes\\Reprogramar.cshtml",
+              "ToolTip": "C:\\Users\\Lucas Astudillo\\Desktop\\Practicas Git\\PracticaFinal2025\\ProyectoCoop1.0\\Views\\Turnoes\\Reprogramar.cshtml",
+              "RelativeToolTip": "ProyectoCoop1.0\\Views\\Turnoes\\Reprogramar.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-08-26T01:36:01.514Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "CreateTurnoSocio.cshtml",
               "DocumentMoniker": "C:\\Users\\Lucas Astudillo\\Desktop\\Practicas Git\\PracticaFinal2025\\ProyectoCoop1.0\\Views\\Turnoes\\CreateTurnoSocio.cshtml",
               "RelativeDocumentMoniker": "ProyectoCoop1.0\\Views\\Turnoes\\CreateTurnoSocio.cshtml",
               "ToolTip": "C:\\Users\\Lucas Astudillo\\Desktop\\Practicas Git\\PracticaFinal2025\\ProyectoCoop1.0\\Views\\Turnoes\\CreateTurnoSocio.cshtml",
               "RelativeToolTip": "ProyectoCoop1.0\\Views\\Turnoes\\CreateTurnoSocio.cshtml",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAAABMAAAASAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-08-19T00:08:38.892Z",
+              "WhenOpened": "2025-08-26T01:35:27.024Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Finalizados.cshtml",
+              "DocumentMoniker": "C:\\Users\\Lucas Astudillo\\Desktop\\Practicas Git\\PracticaFinal2025\\ProyectoCoop1.0\\Views\\Turnoes\\Finalizados.cshtml",
+              "RelativeDocumentMoniker": "ProyectoCoop1.0\\Views\\Turnoes\\Finalizados.cshtml",
+              "ToolTip": "C:\\Users\\Lucas Astudillo\\Desktop\\Practicas Git\\PracticaFinal2025\\ProyectoCoop1.0\\Views\\Turnoes\\Finalizados.cshtml",
+              "RelativeToolTip": "ProyectoCoop1.0\\Views\\Turnoes\\Finalizados.cshtml",
+              "ViewState": "AgIAACEAAAAAAAAAAAAAACUAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-08-26T01:34:54.935Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "MisTurnos.cshtml",
+              "DocumentMoniker": "C:\\Users\\Lucas Astudillo\\Desktop\\Practicas Git\\PracticaFinal2025\\ProyectoCoop1.0\\Views\\Turnoes\\MisTurnos.cshtml",
+              "RelativeDocumentMoniker": "ProyectoCoop1.0\\Views\\Turnoes\\MisTurnos.cshtml",
+              "ToolTip": "C:\\Users\\Lucas Astudillo\\Desktop\\Practicas Git\\PracticaFinal2025\\ProyectoCoop1.0\\Views\\Turnoes\\MisTurnos.cshtml",
+              "RelativeToolTip": "ProyectoCoop1.0\\Views\\Turnoes\\MisTurnos.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAC8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-08-21T21:22:40.877Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 6,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\Lucas Astudillo\\Desktop\\Practicas Git\\PracticaFinal2025\\ProyectoCoop1.0\\Views\\Socios\\Index.cshtml",
-              "RelativeDocumentMoniker": "ProyectoCoop1.0\\Views\\Socios\\Index.cshtml",
-              "ToolTip": "C:\\Users\\Lucas Astudillo\\Desktop\\Practicas Git\\PracticaFinal2025\\ProyectoCoop1.0\\Views\\Socios\\Index.cshtml",
-              "RelativeToolTip": "ProyectoCoop1.0\\Views\\Socios\\Index.cshtml",
-              "ViewState": "AgIAAEAAAAAAAAAAAAAgwEUAAAAQAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-08-19T01:59:37.962Z",
+              "Title": "TurnoesController.cs",
+              "DocumentMoniker": "C:\\Users\\Lucas Astudillo\\Desktop\\Practicas Git\\PracticaFinal2025\\ProyectoCoop1.0\\Controllers\\TurnoesController.cs",
+              "RelativeDocumentMoniker": "ProyectoCoop1.0\\Controllers\\TurnoesController.cs",
+              "ToolTip": "C:\\Users\\Lucas Astudillo\\Desktop\\Practicas Git\\PracticaFinal2025\\ProyectoCoop1.0\\Controllers\\TurnoesController.cs",
+              "RelativeToolTip": "ProyectoCoop1.0\\Controllers\\TurnoesController.cs",
+              "ViewState": "AgIAAPsAAAAAAAAAAAA6wAoBAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-26T01:02:04.315Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "Privacy.cshtml",
-              "DocumentMoniker": "C:\\Users\\Lucas Astudillo\\Desktop\\Practicas Git\\PracticaFinal2025\\ProyectoCoop1.0\\Views\\Home\\Privacy.cshtml",
-              "RelativeDocumentMoniker": "ProyectoCoop1.0\\Views\\Home\\Privacy.cshtml",
-              "ToolTip": "C:\\Users\\Lucas Astudillo\\Desktop\\Practicas Git\\PracticaFinal2025\\ProyectoCoop1.0\\Views\\Home\\Privacy.cshtml",
-              "RelativeToolTip": "ProyectoCoop1.0\\Views\\Home\\Privacy.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAABNAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-08-19T00:02:52.357Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "Edit.cshtml",
-              "DocumentMoniker": "C:\\Users\\Lucas Astudillo\\Desktop\\Practicas Git\\PracticaFinal2025\\ProyectoCoop1.0\\Views\\Turnoes\\Edit.cshtml",
-              "RelativeDocumentMoniker": "ProyectoCoop1.0\\Views\\Turnoes\\Edit.cshtml",
-              "ToolTip": "C:\\Users\\Lucas Astudillo\\Desktop\\Practicas Git\\PracticaFinal2025\\ProyectoCoop1.0\\Views\\Turnoes\\Edit.cshtml",
-              "RelativeToolTip": "ProyectoCoop1.0\\Views\\Turnoes\\Edit.cshtml",
-              "ViewState": "AgIAACkAAAAAAAAAAADwvzEAAAARAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-08-19T00:16:33.874Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "HomeController.cs",
-              "DocumentMoniker": "C:\\Users\\Lucas Astudillo\\Desktop\\Practicas Git\\PracticaFinal2025\\ProyectoCoop1.0\\Controllers\\HomeController.cs",
-              "RelativeDocumentMoniker": "ProyectoCoop1.0\\Controllers\\HomeController.cs",
-              "ToolTip": "C:\\Users\\Lucas Astudillo\\Desktop\\Practicas Git\\PracticaFinal2025\\ProyectoCoop1.0\\Controllers\\HomeController.cs",
-              "RelativeToolTip": "ProyectoCoop1.0\\Controllers\\HomeController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-19T00:19:54.907Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\Lucas Astudillo\\Desktop\\Practicas Git\\PracticaFinal2025\\ProyectoCoop1.0\\Views\\Home\\Index.cshtml",
-              "RelativeDocumentMoniker": "ProyectoCoop1.0\\Views\\Home\\Index.cshtml",
-              "ToolTip": "C:\\Users\\Lucas Astudillo\\Desktop\\Practicas Git\\PracticaFinal2025\\ProyectoCoop1.0\\Views\\Home\\Index.cshtml",
-              "RelativeToolTip": "ProyectoCoop1.0\\Views\\Home\\Index.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAABXAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-08-18T23:59:29.081Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "SociosController.cs",
-              "DocumentMoniker": "C:\\Users\\Lucas Astudillo\\Desktop\\Practicas Git\\PracticaFinal2025\\ProyectoCoop1.0\\Controllers\\SociosController.cs",
-              "RelativeDocumentMoniker": "ProyectoCoop1.0\\Controllers\\SociosController.cs",
-              "ToolTip": "C:\\Users\\Lucas Astudillo\\Desktop\\Practicas Git\\PracticaFinal2025\\ProyectoCoop1.0\\Controllers\\SociosController.cs",
-              "RelativeToolTip": "ProyectoCoop1.0\\Controllers\\SociosController.cs",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-19T00:19:56.256Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "Create.cshtml",
-              "DocumentMoniker": "C:\\Users\\Lucas Astudillo\\Desktop\\Practicas Git\\PracticaFinal2025\\ProyectoCoop1.0\\Views\\Turnoes\\Create.cshtml",
-              "RelativeDocumentMoniker": "ProyectoCoop1.0\\Views\\Turnoes\\Create.cshtml",
-              "ToolTip": "C:\\Users\\Lucas Astudillo\\Desktop\\Practicas Git\\PracticaFinal2025\\ProyectoCoop1.0\\Views\\Turnoes\\Create.cshtml",
-              "RelativeToolTip": "ProyectoCoop1.0\\Views\\Turnoes\\Create.cshtml",
-              "ViewState": "AgIAACMAAAAAAAAAAAAwwDQAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-08-18T23:36:32.638Z"
             }
           ]
         }

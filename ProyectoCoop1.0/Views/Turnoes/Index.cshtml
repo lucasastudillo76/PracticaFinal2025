@@ -20,10 +20,18 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
+        @if (!Model.Any())
         {
             <tr>
-                <td>@item.FechaHora.ToString("g")</td>
+                <td colspan="8" class="text-center text-muted">No hay turnos reservados.</td>
+            </tr>
+        }
+        else
+        {
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.FechaHora.ToString("g")</td>
                 <td>@item.servicio</td>
                 <td>@item.tarea</td>
                 <td>@item.estado</td>
@@ -36,6 +44,10 @@
                     <a asp-action="Delete" asp-route-id="@item.id" class="btn btn-sm btn-danger">Eliminar</a>
                 </td>
             </tr>
-        }
+       
+            }
+            }
+        
+      
     </tbody>
 </table>

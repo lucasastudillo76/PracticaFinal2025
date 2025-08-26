@@ -8,6 +8,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using X.PagedList;
+using X.PagedList.Extensions;
 
 namespace ProyectoCoop1._0.Controllers
 {
@@ -22,8 +24,11 @@ namespace ProyectoCoop1._0.Controllers
         }
 
         // GET: Socios
-        public IActionResult Index(int? id, string apellido)
+        public IActionResult Index(int? id, int? page, string apellido)
         {
+            int pageSize = 20; // Cantidad de elementos por página
+            int pageNumber = page ?? 1; // Si page es null, usar 1
+
             var socios = _context.Socios.AsQueryable();
 
             if (id.HasValue)
@@ -32,7 +37,9 @@ namespace ProyectoCoop1._0.Controllers
             if (!string.IsNullOrEmpty(apellido))
                 socios = socios.Where(s => s.apellido.Contains(apellido));
 
-            return View(socios.ToList());
+            var pagedSocios = socios.OrderBy(s => s.id).ToPagedList(pageNumber, pageSize);
+
+            return View(pagedSocios);
         }
 
         // GET: Socios/Details/5
@@ -172,47 +179,67 @@ namespace ProyectoCoop1._0.Controllers
 
         // POST: Socios/Importar
         [HttpPost]
-        public async Task<IActionResult> Importar(IFormFile file)
+public async Task<IActionResult> Importar(IFormFile file)
+{
+    if (file == null || file.Length <= 0)
+    {
+        ModelState.AddModelError("", "Por favor seleccione un archivo válido.");
+        return View();
+    }
+
+    ExcelPackage.License.SetNonCommercialOrganization("<YourNoncommercial Organization>");
+
+    using (var stream = new MemoryStream())
+    {
+        await file.CopyToAsync(stream);
+        using (var package = new ExcelPackage(stream))
         {
-            if (file == null || file.Length <= 0)
-            {
-                ModelState.AddModelError("", "Por favor seleccione un archivo válido.");
-                return View();
-            }
+            var worksheet = package.Workbook.Worksheets[0];
+            var rowCount = worksheet.Dimension.Rows;
 
-            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+            var socios = new List<Socio>();
 
-            using (var stream = new MemoryStream())
+            for (int row = 2; row <= rowCount; row++)
             {
-                await file.CopyToAsync(stream);
-                using (var package = new ExcelPackage(stream))
+                string nombre = worksheet.Cells[row, 1].Text;
+                string apellido = worksheet.Cells[row, 2].Text;
+                string email = worksheet.Cells[row, 3].Text;
+                string telefono = worksheet.Cells[row, 4].Text;
+                string direccion = worksheet.Cells[row, 5].Text;
+                string usuarioLogin = worksheet.Cells[row, 6].Text;
+
+                // Validación para evitar filas vacías
+                if (!string.IsNullOrWhiteSpace(nombre) || !string.IsNullOrWhiteSpace(apellido))
                 {
-                    var worksheet = package.Workbook.Worksheets[0];
-                    var rowCount = worksheet.Dimension.Rows;
-
-                    var socios = new List<Socio>();
-
-                    for (int row = 2; row <= rowCount; row++)
+                    var usuario = new Usuario
                     {
-                        var socio = new Socio
-                        {
-                            nombre = worksheet.Cells[row, 1].Text,
-                            apellido = worksheet.Cells[row, 2].Text,
-                            email = worksheet.Cells[row, 3].Text,
-                            telefono = worksheet.Cells[row, 4].Text,
-                            direccion = worksheet.Cells[row, 5].Text
-                        };
+                        usuario = usuarioLogin.Trim().ToLower(),  // Guarda el usuarioLogin en minúsculas y sin espacios
+                        contrasenia = "1234",
+                        esadmin = false
+                    };
 
-                        socios.Add(socio);
-                    }
+                    var socio = new Socio
+                    {
+                        nombre = nombre,
+                        apellido = apellido,
+                        email = email,
+                        telefono = telefono,
+                        direccion = direccion,
+                        usuarioLogin = usuarioLogin,
+                        Usuario = usuario  // Asocia el Usuario creado al Socio
+                    };
 
-                    _context.Socios.AddRange(socios);
-                    await _context.SaveChangesAsync();
+                    socios.Add(socio);
                 }
             }
 
-            return RedirectToAction(nameof(Index));
+            _context.Socios.AddRange(socios);
+            await _context.SaveChangesAsync();
         }
+    }
+
+    return RedirectToAction(nameof(Index));
+}
 
         // GET: Socios/Exportar
         [HttpGet]
@@ -226,7 +253,7 @@ namespace ProyectoCoop1._0.Controllers
         public IActionResult DescargarExcel()
         {
             var socios = _context.Socios.ToList();
-            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+            ExcelPackage.License.SetNonCommercialOrganization("<YourNoncommercial Organization>");
 
             using (var package = new ExcelPackage())
             {
