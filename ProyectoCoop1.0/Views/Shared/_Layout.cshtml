@@ -13,7 +13,7 @@
             <div class="container-fluid">
                 <a class="navbar-brand d-flex align-items-center" asp-area="" asp-controller="Home" asp-action="Index">
                     <img src="~/images/logocoop.png" alt="Logo" style="height: 30px; margin-right: 10px;" />
-                    ProyectoCoop1._0
+                    ProyectoCoop1.0
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -32,7 +32,7 @@
 
                         @if (User.Identity.IsAuthenticated)
                         {
-                            if (User.HasClaim("EsAdmin", "true"))
+                            if (User.IsInRole("Admin"))
                             {
                                 <!-- Links para admin -->
                                 <li class="nav-item">
@@ -45,9 +45,9 @@
                                     <a class="nav-link text-dark fw-bold text-primary" asp-controller="Turnoes" asp-action="Finalizados">Turnos Finalizados</a>
                                 </li>
                             }
-                            else
+                            else if (User.IsInRole("Socio"))
                             {
-                                <!-- Link para socio -->
+                                <!-- Links para socio -->
                                 <li class="nav-item">
                                     <a class="nav-link text-dark fw-bold text-primary" asp-area="" asp-controller="Turnoes" asp-action="CreateTurnoSocio">Sacar turno</a>
                                 </li>
@@ -73,7 +73,7 @@
                     }
                     else
                     {
-                        <a class="nav-link text-success" asp-area="" asp-controller="Usuarios" asp-action="Login">Iniciar Sesion</a>
+                        <a class="nav-link text-success" asp-area="" asp-controller="Usuarios" asp-action="Login">Iniciar Sesión</a>
                     }
                 </div>
             </div>

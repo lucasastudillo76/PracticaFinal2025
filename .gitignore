@@ -1,0 +1,40 @@
+# === Archivos temporales de Visual Studio ===
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# === Carpetas de compilación ===
+bin/
+obj/
+Debug/
+Release/
+GeneratedFiles/
+TestResults/
+[Bb]uild/
+[Ll]og/
+[Tt]emp/
+
+# === Paquetes y librerías ===
+*.nupkg
+*.snupkg
+packages/
+*.dll
+*.exe
+*.pdb
+
+# === Archivos de logs y temporales ===
+*.log
+*.tlog
+*.tmp
+*.temp
+
+# === Configuración IDEs ===
+.idea/
+*.iml
+
+# === Archivos de sistema ===
+*.DS_Store
+Thumbs.db
+desktop.ini

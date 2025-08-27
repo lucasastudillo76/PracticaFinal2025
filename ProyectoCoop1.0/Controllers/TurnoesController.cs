@@ -301,8 +301,8 @@ namespace ProyectoCoop1._0.Controllers
                 if (nuevaFecha.DayOfWeek == DayOfWeek.Saturday || nuevaFecha.DayOfWeek == DayOfWeek.Sunday)
                     ModelState.AddModelError("FechaHora", "Debe elegir un día hábil.");
 
-                if (nuevaFecha.Hour < 7 || nuevaFecha.Hour > 11)
-                    ModelState.AddModelError("FechaHora", "Hora fuera del horario permitido.");
+                if (nuevaFecha.Hour < 7 || nuevaFecha.Hour > 12)
+                    ModelState.AddModelError("FechaHora", "La hora debe estar entre las 07:00 y las 12:00.");
 
                 bool yaExisteTurno = await _dbContext.Turnos.AnyAsync(t =>
                     t.id != turnoEnDb.id &&

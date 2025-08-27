@@ -7,33 +7,33 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<div class="container mt-4">
+    <h2 class="mb-4 text-primary">Listado de Socios</h2>
 
-<p>
-    <a asp-action="Create">Create New</a></br>
-    <a asp-action="Importar" class="btn btn-primary">Importar desde Excel</a><br />
-    <a asp-action="Exportar" class="btn btn-primary">Exportar a Excel</a>
-</p>
-
-<form method="get" asp-action="Index" class="mb-3">
-    <div class="form-row">
+    <div class="mb-3">
+        <a asp-action="Create" class="btn btn-success me-2">Nuevo Socio</a>
+        <a asp-action="Importar" class="btn btn-primary me-2">Importar desde Excel</a>
+        <a asp-action="Exportar" class="btn btn-outline-primary">Exportar a Excel</a>
+    </div>
+    <form method="get" asp-action="Index" class="row g-3 align-items-end mb-4">
         <div class="col-md-2">
+            <label class="form-label">ID</label>
             <input type="number" name="id" class="form-control" placeholder="Buscar por ID" value="@Context.Request.Query["id"]" />
         </div>
         <div class="col-md-3">
+            <label class="form-label">Apellido</label>
             <input type="text" name="apellido" class="form-control" placeholder="Buscar por apellido" value="@Context.Request.Query["apellido"]" />
         </div>
-        <div class="col-md-2">
-            <button type="submit" class="btn btn-primary">Buscar</button>
-        </div>
-        <div class="col-md-2">
-            <a asp-action="Index" class="btn btn-secondary">Limpiar</a>
-        </div>
-    </div>
+            <div class="col-md-auto">
+                <button type="submit" class="btn btn-primary">Buscar</button>
+            </div>
+            <div class="col-md-auto">
+                <a asp-action="Index" class="btn btn-secondary">Limpiar</a>
+            </div>    
 </form>
 
-<table class="table">
-    <thead>
+    <table class="table table-bordered table-hover align-middle">
+        <thead>
         <tr>
             <th>@Html.DisplayNameFor(model => model[0].id)</th>
             <th>@Html.DisplayNameFor(model => model[0].nombre)</th>

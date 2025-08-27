@@ -2,23 +2,39 @@
     ViewData["Title"] = "Login";
 }
 
-<h2>Iniciar sesión</h2>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-5">
+            <div class="card shadow-sm border-0">
+                <div class="card-body p-4">
+                    <h3 class="text-center mb-4 text-primary">Iniciar sesión</h3>
 
-<form asp-action="Login" method="post">
-    @Html.AntiForgeryToken()
+                    <form asp-action="Login" method="post">
+                        @Html.AntiForgeryToken()
 
-    <div class="form-group">
-        <label>Usuario</label>
-        <input type="text" name="usuario" class="form-control" />
+                        <div class="form-group mb-3">
+                            <label for="usuario">Usuario</label>
+                            <input type="text" name="usuario" id="usuario" class="form-control" placeholder="Ingrese su usuario" required />
+                        </div>
+
+                        <div class="form-group mb-4">
+                            <label for="contraseña">Contraseña</label>
+                            <input type="password" name="contraseña" id="contraseña" class="form-control" placeholder="Ingrese su contraseña" required />
+                        </div>
+
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary btn-block">Entrar</button>
+                        </div>
+
+                        @if (ViewBag.Error != null)
+                        {
+                            <div class="alert alert-danger mt-3" role="alert">
+                                @ViewBag.Error
+                            </div>
+                        }
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="form-group">
-        <label>Contraseña</label>
-        <input type="password" name="contraseña" class="form-control" />
-    </div>
-    <button type="submit" class="btn btn-primary">Entrar</button>
-
-    @if (ViewBag.Error != null)
-    {
-        <div class="alert alert-danger">@ViewBag.Error</div>
-    }
-</form>
+</div>
