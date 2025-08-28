@@ -5,6 +5,7 @@
 }
 
 <h2>Sacar Turno</h2>
+<p>Porfavor seleccionar un dia habil(*LUNES A VIERNES*) y entre las 7AM Hasta 12PM</p>
 <hr />
 
 <div class="row">
@@ -21,8 +22,8 @@
 
             <!-- Servicio -->
             <div class="form-group">
-                <label asp-for="servicio" class="control-label"></label>
-                <select asp-for="servicio" class="form-control" id="servicio">
+                <label asp-for="servicio" class="control-label">Servicio</label>
+                <select asp-for="servicio" class="form-control" id="servicio" name="servicio">
                     <option value="">-- Seleccione un servicio --</option>
                     <option value="internet">Internet</option>
                     <option value="cablevision">Cablevisión</option>
@@ -33,30 +34,29 @@
 
             <!-- Tarea -->
             <div class="form-group">
-                <label asp-for="tarea" class="control-label"></label>
-                <select asp-for="tarea" class="form-control" id="tarea">
+                <label asp-for="tarea" class="control-label">Tarea</label>
+                <select asp-for="tarea" class="form-control" id="tarea" name="tarea">
                     <option value="">-- Seleccione una tarea --</option>
                 </select>
                 <span asp-validation-for="tarea" class="text-danger"></span>
             </div>
 
-            <!-- Estado (visible, solo pendiente para socio) -->
+            <!-- Estado -->
             <div class="form-group">
                 <label asp-for="estado" class="control-label"></label>
-                <select asp-for="estado" class="form-control">                    
+                <select asp-for="estado" class="form-control">
                     <option value="Pendiente" selected>Pendiente</option>
                 </select>
                 <span asp-validation-for="estado" class="text-danger"></span>
             </div>
 
-            <!-- Botón Enviar -->
+            <!-- Botón -->
             <div class="form-group mt-3">
                 <input type="submit" value="Confirmar Turno" class="btn btn-primary" />
                 <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
             </div>
         </form>
-    </div>    
-
+    </div>
 </div>
 
 @section Scripts {
@@ -83,21 +83,43 @@
             ]
         };
 
-        document.getElementById("servicio").addEventListener("change", function () {
-            const servicioSeleccionado = this.value;
+        function cargarTareas(servicio) {
             const tareaSelect = document.getElementById("tarea");
-
             tareaSelect.innerHTML = '<option value="">-- Seleccione una tarea --</option>';
 
-            if (tareasPorServicio[servicioSeleccionado]) {
-                tareasPorServicio[servicioSeleccionado].forEach(function (tarea) {
+            if (tareasPorServicio[servicio]) {
+                tareasPorServicio[servicio].forEach(function (tarea) {
                     const option = document.createElement("option");
                     option.value = tarea;
                     option.text = tarea;
                     tareaSelect.appendChild(option);
                 });
             }
+        }
+
+        const servicioSelect = document.getElementById("servicio");
+
+        servicioSelect.addEventListener("change", function () {
+            cargarTareas(this.value);
         });
+
+        // Al cargar la vista, si ya hay servicio y tarea seleccionados (por error de validación)
+        window.addEventListener("load", function () {
+            const servicioActual = document.getElementById("servicio").value;
+            const tareaActual = "@Model.tarea";
+
+            if (servicioActual) {
+                cargarTareas(servicioActual);
+
+                if (tareaActual) {
+                    const tareaSelect = document.getElementById("tarea");
+                    const optionToSelect = Array.from(tareaSelect.options).find(o => o.value === tareaActual);
+                    if (optionToSelect) optionToSelect.selected = true;
+                }
+            }
+        });
+
+        // Validaciones adicionales con JS
         const inputFecha = document.querySelector("input[type='datetime-local']");
         const form = document.querySelector("form");
 
@@ -113,7 +135,6 @@
             const ahora = new Date();
 
             const dia = fecha.getDay(); // 0 = domingo, 6 = sábado
-
             let mensaje = "";
 
             if (fecha <= ahora) {
@@ -128,13 +149,14 @@
                 mensaje += "Hora inválida. Debe ser entre 07:00 y 12:00.\n";
             }
 
+            if (minute !== 0) {
+                mensaje += "Solo se permiten turnos en horas exactas (por ejemplo: 07:00, 08:00, etc.).\n";
+            }
+
             if (mensaje) {
-                e.preventDefault(); // 🚫 Evita que el formulario se envíe
+                e.preventDefault(); // ❌ Detiene el envío
                 alert(mensaje.trim());
             }
         });
-        
     </script>
-    }
-    
-
+}

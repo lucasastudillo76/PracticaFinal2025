@@ -582,7 +582,6 @@ C:\Users\Lucas Astudillo\Desktop\Practicas Git\PracticaFinal2025\ProyectoCoop1.0
 C:\Users\Lucas Astudillo\Desktop\Practicas Git\PracticaFinal2025\ProyectoCoop1.0\obj\Debug\net8.0\staticwebassets.build.json.cache
 C:\Users\Lucas Astudillo\Desktop\Practicas Git\PracticaFinal2025\ProyectoCoop1.0\obj\Debug\net8.0\staticwebassets.development.json
 C:\Users\Lucas Astudillo\Desktop\Practicas Git\PracticaFinal2025\ProyectoCoop1.0\obj\Debug\net8.0\staticwebassets.build.endpoints.json
-C:\Users\Lucas Astudillo\Desktop\Practicas Git\PracticaFinal2025\ProyectoCoop1.0\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
 C:\Users\Lucas Astudillo\Desktop\Practicas Git\PracticaFinal2025\ProyectoCoop1.0\obj\Debug\net8.0\Proyecto.74E226A2.Up2Date
 C:\Users\Lucas Astudillo\Desktop\Practicas Git\PracticaFinal2025\ProyectoCoop1.0\obj\Debug\net8.0\ProyectoCoop1.0.dll
 C:\Users\Lucas Astudillo\Desktop\Practicas Git\PracticaFinal2025\ProyectoCoop1.0\obj\Debug\net8.0\refint\ProyectoCoop1.0.dll
@@ -592,3 +591,4 @@ C:\Users\Lucas Astudillo\Desktop\Practicas Git\PracticaFinal2025\ProyectoCoop1.0
 C:\Users\Lucas Astudillo\Desktop\Practicas Git\PracticaFinal2025\ProyectoCoop1.0\bin\Debug\net8.0\X.PagedList.dll
 C:\Users\Lucas Astudillo\Desktop\Practicas Git\PracticaFinal2025\ProyectoCoop1.0\bin\Debug\net8.0\X.PagedList.Mvc.Core.dll
 C:\Users\Lucas Astudillo\Desktop\Practicas Git\PracticaFinal2025\ProyectoCoop1.0\obj\Debug\net8.0\ProyectoCoop1.0.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Lucas Astudillo\Desktop\Practicas Git\PracticaFinal2025\ProyectoCoop1.0\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt

@@ -50,7 +50,8 @@ namespace ProyectoCoop1._0.Controllers
         [Authorize(Roles = "Socio")]
         public IActionResult CreateTurnoSocio()
         {
-            return View();
+            var turno = new Turno(); // ✅ instancia vacía del modelo
+            return View(turno);
         }
 
         // SOCIO - POST CREAR TURNO
