@@ -1,0 +1,45 @@
+﻿@model ProyectoCoop1._0.Models.RestablecerContrasenia
+
+@{
+    ViewBag.Title = "Restablecer contraseña";
+}
+
+<h2>Restablecer contraseña</h2>
+
+@using (Html.BeginForm("RestablecerContrasenia", "Usuarios", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.usuarioLogin)
+        @Html.TextBoxFor(m => m.usuarioLogin, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.usuarioLogin, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.email)
+        @Html.TextBoxFor(m => m.email, new { @class = "form-control", type = "email" })
+        @Html.ValidationMessageFor(m => m.email, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.NuevaContrasenia)
+        @Html.PasswordFor(m => m.NuevaContrasenia, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.NuevaContrasenia, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.ConfirmarContrasenia)
+        @Html.PasswordFor(m => m.ConfirmarContrasenia, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.ConfirmarContrasenia, "", new { @class = "text-danger" })
+    </div>
+
+    <button type="submit" class="btn btn-primary">Restablecer contraseña</button>
+}
+
+@if (TempData["Mensaje"] != null)
+{
+    <div class="alert alert-success mt-3">
+        @TempData["Mensaje"]
+    </div>
+}

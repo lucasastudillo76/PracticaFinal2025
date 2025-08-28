@@ -1,51 +1,54 @@
 ﻿@model List<ProyectoCoop1._0.Models.Turno>
 
 @{
-    ViewData["Title"] = "Mis Turnos";
+    ViewData["Title"] = "Mis Turnos Finalizados";
 }
 
-<h2>Mis Turnos</h2>
+<div class="container mt-4">
+    <h2 class="mb-4 text-primary fw-bold">@ViewData["Title"]</h2>
 
-<table class="table table-bordered table-striped">
-    <thead>
-        <tr>
-            <th>Fecha</th>
-            <th>Servicio</th>
-            <th>Tarea</th>
-            <th>Estado</th>
-            <th>Acciones</th>
-        </tr>
-    </thead>
-    <tbody>
-        @if (!Model.Any())
-        {
-            <tr>
-                <td colspan="5" class="text-center">No hay turnos registrados.</td>
-            </tr>
-        }
-        else
-        {
-            foreach (var turno in Model)
-            {
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover align-middle">
+            <thead class="table-light">
                 <tr>
-                    <td>@turno.FechaHora.ToString("dd/MM/yyyy HH:mm")</td>
-                    <td>@turno.servicio</td>
-                    <td>@turno.tarea</td>
-                    <td>@turno.estado</td>
-                    <td>                        
-                        @if (turno.estado == "Pendiente")
-                        {
-                            <a asp-action="Cancelar" asp-route-id="@turno.id" class="btn btn-sm btn-danger">Cancelar</a>
-                        }
-                        @if (turno.estado == "Suspendido")
-                        {
-                            <a asp-action="Reprogramar" asp-route-id="@turno.id" class="btn btn-sm btn-primary">Reprogramar</a>
-                        }
-                    </td>
+                    <th>Fecha</th>
+                    <th>Servicio</th>
+                    <th>Tarea</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
                 </tr>
-            }
-        }
-
-    </tbody>
-</table>
-
+            </thead>
+            <tbody>
+                @if (!Model.Any())
+                {
+                    <tr>
+                        <td colspan="4" class="text-center text-muted">No hay turnos finalizados registrados.</td>
+                    </tr>
+                }
+                else
+                {
+                    foreach (var turno in Model)
+                    {
+                        <tr>
+                            <td>@turno.FechaHora.ToString("dd/MM/yyyy HH:mm")</td>
+                            <td>@turno.servicio</td>
+                            <td>@turno.tarea</td>
+                            <td>
+                                <span class="badge bg-success">@turno.estado</span>
+                            </td>
+                            <td>
+                                @if (turno.estado == "Pendiente")
+                                {
+                                    <a asp-action="Cancelar" asp-route-id="@turno.id" class="btn btn-danger btn-sm">Cancelar</a>
+                                }
+                                else
+                                {
+                                    <span class="text-muted">No disponible</span>
+                                }
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

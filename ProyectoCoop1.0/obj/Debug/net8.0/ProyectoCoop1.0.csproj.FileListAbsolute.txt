@@ -397,6 +397,8 @@ C:\Users\Lucas Astudillo\Desktop\Practicas Git\PracticaFinal2025\ProyectoCoop1.0
 C:\Users\Lucas Astudillo\Desktop\Practicas Git\PracticaFinal2025\ProyectoCoop1.0\bin\Debug\net8.0\System.Text.Encodings.Web.dll
 C:\Users\Lucas Astudillo\Desktop\Practicas Git\PracticaFinal2025\ProyectoCoop1.0\bin\Debug\net8.0\System.Text.Json.dll
 C:\Users\Lucas Astudillo\Desktop\Practicas Git\PracticaFinal2025\ProyectoCoop1.0\bin\Debug\net8.0\System.Windows.Extensions.dll
+C:\Users\Lucas Astudillo\Desktop\Practicas Git\PracticaFinal2025\ProyectoCoop1.0\bin\Debug\net8.0\X.PagedList.dll
+C:\Users\Lucas Astudillo\Desktop\Practicas Git\PracticaFinal2025\ProyectoCoop1.0\bin\Debug\net8.0\X.PagedList.Mvc.Core.dll
 C:\Users\Lucas Astudillo\Desktop\Practicas Git\PracticaFinal2025\ProyectoCoop1.0\bin\Debug\net8.0\af\Humanizer.resources.dll
 C:\Users\Lucas Astudillo\Desktop\Practicas Git\PracticaFinal2025\ProyectoCoop1.0\bin\Debug\net8.0\ar\Humanizer.resources.dll
 C:\Users\Lucas Astudillo\Desktop\Practicas Git\PracticaFinal2025\ProyectoCoop1.0\bin\Debug\net8.0\az\Humanizer.resources.dll
@@ -568,6 +570,7 @@ C:\Users\Lucas Astudillo\Desktop\Practicas Git\PracticaFinal2025\ProyectoCoop1.0
 C:\Users\Lucas Astudillo\Desktop\Practicas Git\PracticaFinal2025\ProyectoCoop1.0\obj\Debug\net8.0\ProyectoCoop1.0.AssemblyInfoInputs.cache
 C:\Users\Lucas Astudillo\Desktop\Practicas Git\PracticaFinal2025\ProyectoCoop1.0\obj\Debug\net8.0\ProyectoCoop1.0.AssemblyInfo.cs
 C:\Users\Lucas Astudillo\Desktop\Practicas Git\PracticaFinal2025\ProyectoCoop1.0\obj\Debug\net8.0\ProyectoCoop1.0.csproj.CoreCompileInputs.cache
+C:\Users\Lucas Astudillo\Desktop\Practicas Git\PracticaFinal2025\ProyectoCoop1.0\obj\Debug\net8.0\ProyectoCoop1.0.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\Lucas Astudillo\Desktop\Practicas Git\PracticaFinal2025\ProyectoCoop1.0\obj\Debug\net8.0\ProyectoCoop1.0.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\Lucas Astudillo\Desktop\Practicas Git\PracticaFinal2025\ProyectoCoop1.0\obj\Debug\net8.0\ProyectoCoop1.0.RazorAssemblyInfo.cache
 C:\Users\Lucas Astudillo\Desktop\Practicas Git\PracticaFinal2025\ProyectoCoop1.0\obj\Debug\net8.0\ProyectoCoop1.0.RazorAssemblyInfo.cs
@@ -582,13 +585,10 @@ C:\Users\Lucas Astudillo\Desktop\Practicas Git\PracticaFinal2025\ProyectoCoop1.0
 C:\Users\Lucas Astudillo\Desktop\Practicas Git\PracticaFinal2025\ProyectoCoop1.0\obj\Debug\net8.0\staticwebassets.build.json.cache
 C:\Users\Lucas Astudillo\Desktop\Practicas Git\PracticaFinal2025\ProyectoCoop1.0\obj\Debug\net8.0\staticwebassets.development.json
 C:\Users\Lucas Astudillo\Desktop\Practicas Git\PracticaFinal2025\ProyectoCoop1.0\obj\Debug\net8.0\staticwebassets.build.endpoints.json
+C:\Users\Lucas Astudillo\Desktop\Practicas Git\PracticaFinal2025\ProyectoCoop1.0\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
 C:\Users\Lucas Astudillo\Desktop\Practicas Git\PracticaFinal2025\ProyectoCoop1.0\obj\Debug\net8.0\Proyecto.74E226A2.Up2Date
 C:\Users\Lucas Astudillo\Desktop\Practicas Git\PracticaFinal2025\ProyectoCoop1.0\obj\Debug\net8.0\ProyectoCoop1.0.dll
 C:\Users\Lucas Astudillo\Desktop\Practicas Git\PracticaFinal2025\ProyectoCoop1.0\obj\Debug\net8.0\refint\ProyectoCoop1.0.dll
 C:\Users\Lucas Astudillo\Desktop\Practicas Git\PracticaFinal2025\ProyectoCoop1.0\obj\Debug\net8.0\ProyectoCoop1.0.pdb
 C:\Users\Lucas Astudillo\Desktop\Practicas Git\PracticaFinal2025\ProyectoCoop1.0\obj\Debug\net8.0\ProyectoCoop1.0.genruntimeconfig.cache
 C:\Users\Lucas Astudillo\Desktop\Practicas Git\PracticaFinal2025\ProyectoCoop1.0\obj\Debug\net8.0\ref\ProyectoCoop1.0.dll
-C:\Users\Lucas Astudillo\Desktop\Practicas Git\PracticaFinal2025\ProyectoCoop1.0\bin\Debug\net8.0\X.PagedList.dll
-C:\Users\Lucas Astudillo\Desktop\Practicas Git\PracticaFinal2025\ProyectoCoop1.0\bin\Debug\net8.0\X.PagedList.Mvc.Core.dll
-C:\Users\Lucas Astudillo\Desktop\Practicas Git\PracticaFinal2025\ProyectoCoop1.0\obj\Debug\net8.0\ProyectoCoop1.0.MvcApplicationPartsAssemblyInfo.cs
-C:\Users\Lucas Astudillo\Desktop\Practicas Git\PracticaFinal2025\ProyectoCoop1.0\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt

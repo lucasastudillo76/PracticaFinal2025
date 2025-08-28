@@ -120,12 +120,54 @@ namespace ProyectoCoop1._0.Controllers
 
             return RedirectToAction(nameof(Index));
         }
+        [HttpGet]
+        [AllowAnonymous]
+        public IActionResult RestablecerContrasenia()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> RestablecerContrasenia(RestablecerContrasenia model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            var socio = await _context.Socios
+                .Include(s => s.Usuario)
+                .FirstOrDefaultAsync(s =>
+                    s.usuarioLogin.ToLower().Trim() == model.usuarioLogin.ToLower().Trim() &&
+                    s.email.ToLower().Trim() == model.email.ToLower().Trim());
+
+            if (socio == null || socio.Usuario == null)
+            {
+                ModelState.AddModelError("", "No se encontró un usuario con esos datos.");
+                return View(model);
+            }
+
+            // Actualizar la contraseña
+            socio.Usuario.contrasenia = model.NuevaContrasenia.Trim();
+
+            _context.Usuarios.Update(socio.Usuario);
+            await _context.SaveChangesAsync();
+
+            TempData["Mensaje"] = "La contraseña fue restablecida correctamente.";
+            return RedirectToAction("Login");
+        }
+
+
 
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Index()
         {
             return View(await _context.Usuarios.ToListAsync());
         }
+
+
 
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Details(int? id)
