@@ -64,7 +64,8 @@
             <!-- Botón -->
             <div class="form-group mt-3">
                 <input type="submit" value="Confirmar Turno" class="btn btn-primary" />
-                <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+                <a asp-controller="Turnoes" asp-action="MisTurnos" class="btn btn-secondary">Cancelar</a>
+
             </div>
         </form>
     </div>
@@ -75,12 +76,12 @@
 
     <script>
         const tareasPorServicio = {
-            internet: ["Colocación de fibra", "Sin internet", "Interrupciones de servicio"],
-            telefono: ["Sin tono", "Con ruido"],
-            cablevision: ["Conectar servicio de TV", "No se puede reproducir contenido", "Conectar 1 STB adicional", "Conectar 2 STB adicional"],
-            energia: ["Conectar Servicio de Energia", "Sin luz", "Reemplazar medidor por prepago", "Reemplazar medidor por convencional"],
-            agua: ["Sin agua", "Falta presion", "Caño roto", "Perdida de agua"],
-            sociales: ["Traslado en ambulancia", "Solicitud de ortopedia"]
+            internet: ["Sin internet", "Interrupciones de servicio,"],
+            telefono: ["Bloquear Completo","No escucha", "No suena","Sin tono", "Con ruido"],
+            cablevision: ["Conectar Internet + Tv","Conectar 1 STB adicional", "Conectar 2 STB adicional", "Conectar Coop Full", "Conectar Coop Hogar", "No se puede reproducir contenido", "Trasladar Servicio", "Suspender y Retirar Equipos"],
+            energia: ["Conectar Servicio de Energia", "Sin luz", "Reemplazar medidor por prepago", "Reemplazar medidor por convencional", "Cambiar Tapa Caja Medidor", "Falta Fase", "Liberar Pilar P/Reconstruir", "Reconectar Servicio"],
+            agua: ["Conectar Servicio","Desconectar Servicio", "Revisar perdida en via publica", "Sin agua", "Falta presion", "Caño roto", "Perdida de agua"],
+            sociales: ["Traslado en ambulancia", "Solicitud de ortopedia", "Baja Ambulancia", "Baja servicio Sepelio", "Habilitar Servicio", "Suspender Servicio"]
         };
 
         function cargarTareas(servicio) {
