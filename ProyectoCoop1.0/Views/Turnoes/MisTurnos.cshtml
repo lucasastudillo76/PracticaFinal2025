@@ -12,6 +12,8 @@
             <thead class="table-light">
                 <tr>
                     <th>Fecha</th>
+                    <th>ID Socio</th> 
+                    <th>Nombre Socio</th>
                     <th>Servicio</th>
                     <th>Tarea</th>
                     <th>Estado</th>
@@ -22,7 +24,7 @@
                 @if (!Model.Any())
                 {
                     <tr>
-                        <td colspan="4" class="text-center text-muted">No hay turnos finalizados registrados.</td>
+                        <td colspan="7" class="text-center text-muted">No hay turnos finalizados registrados.</td>
                     </tr>
                 }
                 else
@@ -31,6 +33,8 @@
                     {
                         <tr>
                             <td>@turno.FechaHora.ToString("dd/MM/yyyy HH:mm")</td>
+                            <td>@turno.Socio.id</td>
+                            <td>@turno.Socio.nombre @turno.Socio.apellido</td>
                             <td>@turno.servicio</td>
                             <td>@turno.tarea</td>
                             <td>
@@ -45,6 +49,7 @@
                                 {
                                     <span class="text-muted">No disponible</span>
                                 }
+                            </td>
                         </tr>
                     }
                 }

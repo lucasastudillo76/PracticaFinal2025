@@ -8,6 +8,14 @@
 <p><b>Porfavor seleccionar un dia habil(*LUNES A VIERNES*) y entre las 7AM Hasta 12PM</b></p>
 <hr />
 
+@if (TempData["TurnoReservado"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        @TempData["TurnoReservado"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
 <div class="row">
     <div class="col-md-6">
         <form asp-action="CreateTurnoSocio" method="post">
@@ -26,8 +34,11 @@
                 <select asp-for="servicio" class="form-control" id="servicio" name="servicio">
                     <option value="">-- Seleccione un servicio --</option>
                     <option value="internet">Internet</option>
-                    <option value="cablevision">Cablevisión</option>
+                    <option value="cablevision">Cablevisión Digital</option>
                     <option value="telefono">Teléfono</option>
+                    <option value="energia">Energia Electrica</option>
+                    <option value="agua">Agua Corriente</option>
+                    <option value="sociales">Servicios Sociales</option>
                 </select>
                 <span asp-validation-for="servicio" class="text-danger"></span>
             </div>
@@ -60,27 +71,16 @@
 </div>
 
 @section Scripts {
-    @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
-    }
+    @await Html.PartialAsync("_ValidationScriptsPartial")
 
     <script>
         const tareasPorServicio = {
-            internet: [
-                "Colocación de fibra",
-                "Sin internet",
-                "Interrupciones de servicio"
-            ],
-            telefono: [
-                "Sin tono",
-                "Con ruido"
-            ],
-            cablevision: [
-                "Conectar servicio de TV",
-                "No se puede reproducir contenido",
-                "Conectar 1 STB adicional",
-                "Conectar 2 STB adicional"
-            ]
+            internet: ["Colocación de fibra", "Sin internet", "Interrupciones de servicio"],
+            telefono: ["Sin tono", "Con ruido"],
+            cablevision: ["Conectar servicio de TV", "No se puede reproducir contenido", "Conectar 1 STB adicional", "Conectar 2 STB adicional"],
+            energia: ["Conectar Servicio de Energia", "Sin luz", "Reemplazar medidor por prepago", "Reemplazar medidor por convencional"],
+            agua: ["Sin agua", "Falta presion", "Caño roto", "Perdida de agua"],
+            sociales: ["Traslado en ambulancia", "Solicitud de ortopedia"]
         };
 
         function cargarTareas(servicio) {
@@ -103,7 +103,6 @@
             cargarTareas(this.value);
         });
 
-        // Al cargar la vista, si ya hay servicio y tarea seleccionados (por error de validación)
         window.addEventListener("load", function () {
             const servicioActual = document.getElementById("servicio").value;
             const tareaActual = "@Model.tarea";
@@ -119,7 +118,7 @@
             }
         });
 
-        // Validaciones adicionales con JS
+        // Validaciones JS
         const inputFecha = document.querySelector("input[type='datetime-local']");
         const form = document.querySelector("form");
 
@@ -133,28 +132,16 @@
 
             const fecha = new Date(year, month - 1, day, hour, minute);
             const ahora = new Date();
-
             const dia = fecha.getDay(); // 0 = domingo, 6 = sábado
             let mensaje = "";
 
-            if (fecha <= ahora) {
-                mensaje += "La fecha debe ser posterior a la actual.\n";
-            }
-
-            if (dia === 0 || dia === 6) {
-                mensaje += "Debe ser un día hábil (lunes a viernes).\n";
-            }
-
-            if (hour < 7 || hour > 12) {
-                mensaje += "Hora inválida. Debe ser entre 07:00 y 12:00.\n";
-            }
-
-            if (minute !== 0) {
-                mensaje += "Solo se permiten turnos en horas exactas (por ejemplo: 07:00, 08:00, etc.).\n";
-            }
+            if (fecha <= ahora) mensaje += "La fecha debe ser posterior a la actual.\n";
+            if (dia === 0 || dia === 6) mensaje += "Debe ser un día hábil (lunes a viernes).\n";
+            if (hour < 7 || hour > 12) mensaje += "Hora inválida. Debe ser entre 07:00 y 12:00.\n";
+            if (minute !== 0) mensaje += "Solo se permiten turnos en horas exactas (ej: 07:00, 08:00, etc.).\n";
 
             if (mensaje) {
-                e.preventDefault(); // ❌ Detiene el envío
+                e.preventDefault();
                 alert(mensaje.trim());
             }
         });

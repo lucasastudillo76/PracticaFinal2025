@@ -117,11 +117,13 @@ namespace ProyectoCoop1._0.Controllers
             {
                 _dbContext.Add(turno);
                 await _dbContext.SaveChangesAsync();
+                TempData["TurnoReservado"] = $"Turno reservado para el {turno.FechaHora:dd/MM/yyyy HH:mm} con éxito.";
                 return RedirectToAction(nameof(CreateTurnoSocio));
             }
-
+            
             return View(turno);
         }
+
 
         // ADMIN - CREAR TURNO
         [Authorize(Roles = "Admin")]
@@ -368,12 +370,14 @@ namespace ProyectoCoop1._0.Controllers
                 return NotFound();
 
             var turnos = await _dbContext.Turnos
-                .Where(t => t.socioId == socio.id && t.estado == "Finalizado" || t.estado == "Pendiente")
+                .Include(t => t.Socio)
+                .Where(t => t.socioId == socio.id && (t.estado == "Finalizado" || t.estado == "Pendiente"))
                 .OrderByDescending(t => t.FechaHora)
                 .ToListAsync();
 
             return View(turnos);
         }
+
 
         [HttpGet]
         public IActionResult Cancelar(int id)
