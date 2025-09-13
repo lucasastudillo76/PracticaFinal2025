@@ -28,6 +28,6 @@ namespace ProyectoCoop1._0.Models
         [ForeignKey("socioId")]
 
         [ValidateNever]
-        public Socio Socio { get; set; }
+        public Socio Socio { get; set; }//relacion turno con socio 
     }
 }

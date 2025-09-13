@@ -26,7 +26,7 @@ namespace ProyectoCoop1._0.Controllers
             var turnos = await _dbContext.Turnos
                 .Include(t => t.Socio)
                 .Where(t => t.estado == "Pendiente")
-                .OrderBy(t => t.FechaHora)
+                .OrderByDescending(t => t.FechaHora) // CAMBIO
                 .ToListAsync();
 
             return View(turnos);
@@ -46,15 +46,13 @@ namespace ProyectoCoop1._0.Controllers
             return View(turno);
         }
 
-        // SOCIO - FORMULARIO CREAR TURNO
         [Authorize(Roles = "Socio")]
         public IActionResult CreateTurnoSocio()
         {
-            var turno = new Turno(); // ✅ instancia vacía del modelo
+            var turno = new Turno();
             return View(turno);
         }
 
-        // SOCIO - POST CREAR TURNO
         [HttpPost]
         [Authorize(Roles = "Socio")]
         [ValidateAntiForgeryToken]
@@ -77,30 +75,24 @@ namespace ProyectoCoop1._0.Controllers
             turno.socioId = socio.id;
             turno.estado = "Pendiente";
 
-            // Validación: turno ya existente en misma fecha/hora
             bool existeTurno = await _dbContext.Turnos
                 .AnyAsync(t => t.FechaHora == turno.FechaHora && t.socioId == turno.socioId);
 
             if (existeTurno)
                 ModelState.AddModelError("FechaHora", "Ya existe un turno asignado en esa fecha y hora.");
 
-            // Validación: fechas pasadas
             if (turno.FechaHora < DateTime.Now)
                 ModelState.AddModelError("FechaHora", "No se pueden seleccionar fechas pasadas.");
 
-            // Validación: días hábiles
             if (turno.FechaHora.DayOfWeek == DayOfWeek.Saturday || turno.FechaHora.DayOfWeek == DayOfWeek.Sunday)
                 ModelState.AddModelError("FechaHora", "Solo se pueden seleccionar días hábiles (lunes a viernes).");
 
-            // Validación: horario permitido
             if (turno.FechaHora.Hour < 7 || turno.FechaHora.Hour > 12)
                 ModelState.AddModelError("FechaHora", "La hora debe estar entre las 07:00 y las 12:00.");
 
-            // Validación: minutos exactos
             if (turno.FechaHora.Minute != 0)
                 ModelState.AddModelError("FechaHora", "Solo se permiten turnos en horas exactas (ej: 07:00, 08:00, etc.).");
 
-            // ✅ NUEVA VALIDACIÓN: no repetir misma tarea y servicio dentro de 7 días
             var fechaLimite = turno.FechaHora.AddDays(-7);
             bool mismaTareaEnLaSemana = await _dbContext.Turnos
                 .AnyAsync(t =>
@@ -120,12 +112,10 @@ namespace ProyectoCoop1._0.Controllers
                 TempData["TurnoReservado"] = $"Turno reservado para el {turno.FechaHora:dd/MM/yyyy HH:mm} con éxito.";
                 return RedirectToAction(nameof(CreateTurnoSocio));
             }
-            
+
             return View(turno);
         }
 
-
-        // ADMIN - CREAR TURNO
         [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
@@ -161,7 +151,6 @@ namespace ProyectoCoop1._0.Controllers
             return View(turno);
         }
 
-        // ADMIN - EDITAR SOLO EL ESTADO
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int? id)
         {
@@ -188,7 +177,7 @@ namespace ProyectoCoop1._0.Controllers
             var turnoEnDb = await _dbContext.Turnos.FindAsync(id);
             if (turnoEnDb == null) return NotFound();
 
-            if (turnoEnDb.estado == "Pendiente" && turnoInput.estado == "Finalizado" || turnoInput.estado == "Suspendido")
+            if (turnoEnDb.estado == "Pendiente" && (turnoInput.estado == "Finalizado" || turnoInput.estado == "Suspendido"))
             {
                 turnoEnDb.estado = turnoInput.estado;
 
@@ -209,7 +198,6 @@ namespace ProyectoCoop1._0.Controllers
             return View(turnoEnDb);
         }
 
-        // ADMIN - ELIMINAR TURNO
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int? id)
         {
@@ -239,7 +227,6 @@ namespace ProyectoCoop1._0.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        // ADMIN - LISTA DE FINALIZADOS CON FILTRO POR APELLIDO
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Finalizados(string filtroApellido)
         {
@@ -255,14 +242,13 @@ namespace ProyectoCoop1._0.Controllers
             }
 
             var lista = await turnosFinalizados
-                .OrderByDescending(t => t.FechaHora)
+                .OrderByDescending(t => t.FechaHora) // CAMBIO
                 .ToListAsync();
 
             ViewBag.FiltroApellido = filtroApellido;
 
             return View(lista);
         }
-        
 
         [Authorize(Roles = "Socio")]
         public async Task<IActionResult> TurnosSuspendidos()
@@ -273,18 +259,56 @@ namespace ProyectoCoop1._0.Controllers
                 return Unauthorized();
 
             var socio = await _dbContext.Socios
-        .FirstOrDefaultAsync(s => s.usuarioLogin.ToLower() == usuarioLogin);
+                .FirstOrDefaultAsync(s => s.usuarioLogin.ToLower() == usuarioLogin);
 
             if (socio == null)
                 return NotFound("Socio no encontrado");
 
             var turnosSuspendidos = await _dbContext.Turnos
-        .Where(t => t.estado == "Suspendido" && t.socioId == socio.id)
-        .ToListAsync();
+                .Where(t => t.estado == "Suspendido" && t.socioId == socio.id)
+                .OrderByDescending(t => t.FechaHora) // CAMBIO
+                .ToListAsync();
 
             return View(turnosSuspendidos);
         }
 
+        [Authorize(Roles = "Socio")]
+        public async Task<IActionResult> MisTurnos()
+        {
+            var usuarioLogin = User.Identity?.Name?.Trim().ToLower();
+
+            if (string.IsNullOrEmpty(usuarioLogin))
+                return Unauthorized();
+
+            var socio = await _dbContext.Socios
+                .FirstOrDefaultAsync(s => s.usuarioLogin.ToLower() == usuarioLogin);
+
+            if (socio == null)
+                return NotFound();
+
+            var turnos = await _dbContext.Turnos
+                .Include(t => t.Socio)
+                .Where(t => t.socioId == socio.id && (t.estado == "Finalizado" || t.estado == "Pendiente"))
+                .OrderByDescending(t => t.FechaHora) // YA ESTABA CORRECTO
+                .ToListAsync();
+
+            return View(turnos);
+        }
+
+        [HttpGet]
+        public IActionResult Cancelar(int id)
+        {
+            var turno = _dbContext.Turnos.FirstOrDefault(t => t.id == id);
+            if (turno == null)
+            {
+                return NotFound();
+            }
+
+            turno.estado = "Cancelado";
+            _dbContext.SaveChanges();
+
+            return RedirectToAction("MisTurnos");
+        }
 
         [Authorize(Roles = "Socio")]
         [HttpGet]
@@ -296,7 +320,6 @@ namespace ProyectoCoop1._0.Controllers
                 return NotFound();
             }
 
-            // No verificamos si está suspendido, permitimos reprogramar siempre que exista
             return View(turno);
         }
 
@@ -339,7 +362,6 @@ namespace ProyectoCoop1._0.Controllers
 
             if (!ModelState.IsValid)
             {
-                // Devuelve la vista con el modelo original para que pueda corregir
                 turnoEnDb.FechaHora = turnoInput.FechaHora;
                 return View(turnoEnDb);
             }
@@ -354,51 +376,10 @@ namespace ProyectoCoop1._0.Controllers
             return RedirectToAction(User.IsInRole("Admin") ? "Index" : "MisTurnos");
         }
 
-
-        [Authorize(Roles = "Socio")]
-        public async Task<IActionResult> MisTurnos()
-        {
-            var usuarioLogin = User.Identity?.Name?.Trim().ToLower();
-
-            if (string.IsNullOrEmpty(usuarioLogin))
-                return Unauthorized();
-
-            var socio = await _dbContext.Socios
-                .FirstOrDefaultAsync(s => s.usuarioLogin.ToLower() == usuarioLogin);
-
-            if (socio == null)
-                return NotFound();
-
-            var turnos = await _dbContext.Turnos
-                .Include(t => t.Socio)
-                .Where(t => t.socioId == socio.id && (t.estado == "Finalizado" || t.estado == "Pendiente"))
-                .OrderByDescending(t => t.FechaHora)
-                .ToListAsync();
-
-            return View(turnos);
-        }
-
-
-        [HttpGet]
-        public IActionResult Cancelar(int id)
-        {
-            var turno = _dbContext.Turnos.FirstOrDefault(t => t.id == id);
-            if (turno == null)
-            {
-                return NotFound();
-            }
-
-            // Cambiar estado o eliminar, según lógica
-            turno.estado = "Cancelado";
-            _dbContext.SaveChanges();
-
-            return RedirectToAction("MisTurnos");
-        }
-
-
         private bool TurnoExists(int id)
         {
             return _dbContext.Turnos.Any(e => e.id == id);
         }
     }
 }
+

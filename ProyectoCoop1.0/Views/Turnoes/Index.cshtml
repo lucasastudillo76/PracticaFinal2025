@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<ProyectoCoop1._0.Models.Turno>
 
 @{
-    ViewData["Title"] = "Listado de Turnos";
+    ViewData["Title"] = "Turnos Reservados";
 }
 
 <h2>Turnos Reservados</h2>
@@ -31,7 +31,7 @@
             @foreach (var item in Model)
             {
                 <tr>
-                    <td>@item.FechaHora.ToString("g")</td>
+                <td>@item.FechaHora.ToString("dd/MM/yyyy HH:mm")</td>
                 <td>@item.servicio</td>
                 <td>@item.tarea</td>
                 <td>@item.estado</td>

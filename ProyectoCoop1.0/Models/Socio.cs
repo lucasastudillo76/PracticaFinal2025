@@ -27,16 +27,16 @@ namespace ProyectoCoop1._0.Models
         [Required]
         public string direccion { get; set; }
 
-        // 🆕 Campo para login único
+        
         [Required]
         [MaxLength(50)]
-        public string usuarioLogin { get; set; } = string.Empty;
-        // El campo único que se usará para iniciar sesión
+        public string usuarioLogin { get; set; } = string.Empty;//propiedad para login y evita que se null
+        
 
         public int? UsuarioId { get; set; }
 
         [ForeignKey("UsuarioId")]
-        public Usuario? Usuario { get; set; }
+        public Usuario? Usuario { get; set; }//propiedad para recorrer todos las propiedades
 
         [ValidateNever]
         public ICollection<Turno> Turnos { get; set; }

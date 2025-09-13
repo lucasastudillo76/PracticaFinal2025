@@ -7,13 +7,11 @@ namespace ProyectoCoop1._0.Models
 {
     public class AppDbContext : DbContext
     {
-        // 👇 Este constructor permite a EF inyectar las opciones del contexto (cadena de conexión, etc.)
-        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
+        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)//constructor para cadena de conexion
         {
         }        
-
-        // 👇 Estas propiedades indican a EF que cree tablas para estas entidades
-        public DbSet<Socio> Socios { get; set; }
+ 
+        public DbSet<Socio> Socios { get; set; }//tablas de cada uno
         public DbSet<Turno> Turnos { get; set; }
         public DbSet<Usuario> Usuarios { get; set; }
 
